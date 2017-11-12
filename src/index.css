@@ -47,6 +47,16 @@ ul li a:active  {
     color: white;
 } 
 
+#settings-btn {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    bottom: 0px;
+    left: 50px;
+    background: magenta;
+    cursor: pointer;
+}
+
 #sidebar-btn {
     display: inline-block;
     vertical-align: middle;
