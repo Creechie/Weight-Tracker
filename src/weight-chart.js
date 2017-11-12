@@ -4,7 +4,7 @@ let myChart = document.getElementById('weightChart').getContext('2d');
 //Chart.defaults.global.animation.easing = 'easeOutBounce';
 
 let massPopChart = new Chart(weightChart, {
-    type:'doughnut', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    type:'line', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
     data:{
         labels:[
             'London',
