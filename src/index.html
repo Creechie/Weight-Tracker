@@ -20,17 +20,17 @@
 <body>
     <div id="sidebar">
         <ul>
-            <li><a href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp;Weight Tracker</a></li>
-            <li><a href="#">History</a></li>
-            <li><a href="#">Profile/Goals</a></li>
-            <li><a href="#">Appearance</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href="#"><i class="fa fa-area-chart" aria-hidden="true"></i>&nbsp;Weight Tracker</a></li>
+            <li><a href="#"><i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;History</a></li>
+            <li><a href="#"><i class="fa fa-user fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;Profile/Goals</a></li>
+            <li><a href="#"><i class="fa fa-paint-brush" aria-hidden="true"></i>&nbsp;&nbsp;Appearance</a></li>
+            <li><a href="#"><i class="fa fa-question fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Help</a></li>
         </ul>
 
         <button type="button" class="btn btn-default btn-settings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></button>
         <!-- <div id="settings-btn"><i class="fa fa-cog" aria-hidden="true"></i></div> -->
 
-        <div id="sidebar-btn">
+        <div id="btn-sidebar-show">
             <span></span>
             <span></span>
             <span></span>
@@ -41,7 +41,7 @@
 
     <script>
         $(function(){
-            $('#sidebar-btn').click(function(){
+            $('#btn-sidebar-show').click(function(){
                 $('#sidebar').toggleClass('visible');
             })
         })
