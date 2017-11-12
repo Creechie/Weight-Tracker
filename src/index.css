@@ -41,20 +41,27 @@ ul li a:hover   {
     } 
 ul li a:active  {
     /* Applies to activated links */
-    text-decoration:  underline;
     font-weight:      bold;
     background-color: #21252B;
-    color: white;
+    color:            #fff;
 } 
 
-#settings-btn {
+.btn-settings {
     width: 50px;
     height: 50px;
     position: absolute;
     bottom: 0px;
     left: 50px;
-    background: magenta;
-    cursor: pointer;
+    background: #252a30;
+    color:      #ccc;
+    padding: 0px;
+}
+.btn-settings:hover {
+    background: #2C313A;
+}
+.btn-settings:active {
+    background: #21252B;
+    color:      #fff;
 }
 
 #sidebar-btn {
