@@ -62,10 +62,6 @@ body {
     color: #ccc;
     border-bottom: 1px solid #111;
 }
-.sidebar-brand h1 {
-    /* opacity: 0; */
-    /* transition: all 0.2s ease-in-out; */
-}
 .sidebar-brand h1.visible {
     left: 0px;
     /* opacity: 1; */
