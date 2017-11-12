@@ -1,13 +1,73 @@
-.container {
-    background-color: green;
-    
-}
-#weightChart {
-    background-color: yellow;
+body {
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 
-#hello{
-    background-color: red;
-    margin: 10px;
-    
+#sidebar{
+    font-size: 18px;
+    background: #21252B;
+    width: 300px;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: -300px;
+    transition: left 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+#sidebar.visible{
+    left: -50px;
+}
+
+ul{
+    margin: 0px;
+    padding: 0px;
+}
+ul li{
+    list-style: none;
+}
+ul li a{
+    background: #252a30;
+    color: #ccc;
+    border-bottom: 1px solid #111;
+    display: block;
+    width: 300px;
+    padding: 10px;
+    padding-left: 60px;
+    text-decoration: none;
+}
+ul li a:hover   {
+    /* Applies to links under the pointer */
+    text-decoration:  none;
+    background-color: #2C313A;
+    color:            #ccc;
+    } 
+ul li a:active  {
+    /* Applies to activated links */
+    text-decoration:  underline;
+    font-weight:      bold;
+    background-color: #21252B;
+    color: white;
+} 
+
+#sidebar-btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 20px;
+    position: absolute;
+    top: 0px;
+    right: -60px
+}
+#sidebar-btn span{
+    height: 2px;
+    background: #111;
+    margin-bottom: 5px;
+    display: block;
+}
+#sidebar-btn span:nth-child(2){
+    width: 75%;
+}
+#sidebar-btn span:nth-child(3){
+    width: 50%;
+}
+
