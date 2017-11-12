@@ -27,13 +27,8 @@ body {
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
-#wrapper.toggled #btn-sidebar-toggle {
-    left: -70px;
-    color: #ccc;
-}
-#wrapper.toggled #header h1 {
-    margin-left: 0px;
-}
+
+
 
 
 #page-content-wrapper {
@@ -125,10 +120,12 @@ body {
     transition: left 0.1s linear;
     background: #00000000
 } 
-
+#wrapper.toggled #btn-sidebar-toggle {
+    left: -70px;
+    color: #ccc;
+}
 
 #header {
-    margin: 0px;
     padding: 10px;
     height: 80px;
     background: #379eff;
@@ -137,6 +134,9 @@ body {
 #header h1 {
     margin-left: 80px;
     transition: margin-left 0.1s linear;
+}
+#wrapper.toggled #header h1 {
+    margin-left: 10px;
 }
 
 .noise {
