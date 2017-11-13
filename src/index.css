@@ -22,13 +22,12 @@ body {
     background: #21252B;
     font-size: 18px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
 }
 
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
 }
-
-
 
 
 #page-content-wrapper {
@@ -56,9 +55,10 @@ body {
 }
 
 .sidebar-brand {
-    height: 80px;
+    height: 60px;
     width: 100%; 
-    padding: 15px;
+    padding: 5px;
+    padding-left: 10px;    
     color: #ccc;
     border-bottom: 1px solid #111;
 }
@@ -110,7 +110,7 @@ body {
     z-index: 101;
     width: 30px;
     height: 30px;
-    margin: 23px;
+    margin: 15px;
     padding: 0px;
     position: absolute;
     transition: left 0.1s linear;
@@ -122,12 +122,13 @@ body {
 }
 
 #header {
-    padding: 10px;
-    height: 80px;
+    padding: 5px;
+    height: 60px;
     background: #379eff;
     color: #fff;
 }
 #header h1 {
+    margin: 0px;
     margin-left: 80px;
     transition: margin-left 0.1s linear;
 }
