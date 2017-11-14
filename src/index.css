@@ -1,6 +1,6 @@
 body {
     font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 #wrapper {
@@ -31,14 +31,9 @@ body {
 
 
 #page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 0px;
-}
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -300px;
+    z-index: 10000;
+    width: auto;
+    position: relative;
 }
 
 .container-fluid{
@@ -139,22 +134,22 @@ body {
 #current-body-stats {
     background: #223240;
     height: 120px;
-    width: 100%;
+    padding: 0px;
 }
 #current-weight {
     background: #D9D8D7;
     height: 100%;
-
+    padding: inherit;
 }
 #weight-lost {
     background: #8C8881;
     height: 100%;
-
+    padding: inherit;
 }
 #target-calories {
     background: #B0ABA0;
     height: 100%;
-
+    padding: inherit;
 }
 
 .noise {
