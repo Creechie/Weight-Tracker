@@ -31,7 +31,6 @@ body {
 
 
 #page-content-wrapper {
-    z-index: 10000;
     width: auto;
     position: relative;
 }
@@ -133,24 +132,31 @@ body {
 
 #current-body-stats {
     background: #223240;
+    color: #fff;
     height: 120px;
     padding: 0px;
     margin: 0px;
 }
+.current-body-stats-header {
+    background: #273f55;
+    color: #fff;
+    height: 33.33%;
+    height: calc(100% / 3);
+    padding: 5px;
+    text-align: center;
+    overflow: hidden;
+}
 #current-weight {
-    background: #D9D8D7;
-    height: 100%;
     padding: inherit;
+    border-left: 1px solid #111;
 }
 #weight-lost {
-    background: #8C8881;
-    height: 100%;
     padding: inherit;
+    border-left: 1px solid #111;
 }
 #target-calories {
-    background: #B0ABA0;
-    height: 100%;
     padding: inherit;
+    border-left: 1px solid #111;
 }
 
 .noise {
