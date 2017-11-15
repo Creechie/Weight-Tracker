@@ -118,7 +118,7 @@ body {
 #header {
     padding: 5px;
     height: 60px;
-    background: #3C556B;
+    background: #0664b6;
     color: #fff;
 }
 #header h1 {
@@ -145,18 +145,52 @@ body {
     padding: 5px;
     text-align: center;
     overflow: hidden;
+    border-bottom: 1px solid #111;
 }
 #current-weight {
     padding: inherit;
     border-left: 1px solid #111;
+    font-size: 1.1vw;
+}
+#current-weight p {
+    font-size: 2.5vw;
+    text-align: center;
 }
 #weight-lost {
     padding: inherit;
     border-left: 1px solid #111;
+    font-size: 1.1vw;
 }
-#target-calories {
+#weight-lost p {
+    font-size: 2.5vw;
+    text-align: center;
+    color: green;
+}
+#other-stats {
     padding: inherit;
     border-left: 1px solid #111;
+    background: #223240;
+}
+#other-stats p{
+    font-size: 1.3vw;
+    text-align: center;
+}
+
+.stat-container {
+    height: 33.33%;
+    height: calc(100% / 3);
+    border-bottom: 1px solid #111;
+}
+
+.other-stats-header {
+    background: #273f55;
+    width: 50%;
+    height: 100%;
+    text-align: right;
+    border-right: 1px solid #111;
+    float: left;
+    padding: 5px;
+    font-size: 1.1vw;
 }
 
 .noise {
