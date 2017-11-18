@@ -1,12 +1,9 @@
 /** 
- * Returns an array of all items with a specifed index from the user-diary.json. 
- * @param {!number} index 0 = date string | 1 = weight | 2 = calories
- *//**
- * Returns an array of all items with a specifed index from the user-diary.json. 
- * @param {!string} label "date" | "weight" | "calories"
+ * Returns an array of all items from the specifed index from the user-diary.json. 
+ * @param {(number|string)} index (0 | "date") | (1 | "weight") | (2 | "calories")
+ * @returns {(number[]|string[])} All items from the specifed index from the user-diary.json
  * */
-function loadDataFromDiary(index) {
-}
+function loadDataFromDiary(index) {}
 
 
 $(function () {
@@ -15,23 +12,10 @@ $(function () {
     let massPopChart = new Chart(weightChart, {
         type: 'line', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
         data: {
-            labels: [
-                'London',
-                'Birmingham',
-                'Leeds',
-                'Sheffield',
-                'Cornwall',
-                'Manchester',
-                'Bradford',
-                'Co. Durham',
-                'Wiltshire',
-                'Liverpool',
-                'Bristol'
-            ],
+            labels: loadDataFromDiary("date"),
             datasets: [{
-                label: 'Population',
-                data: [ loadDataFromDiary() ],
-                backgroundColor: ['rgba(255, 99, 132, 0.6)']
+                label: 'Weight',
+                data: loadDataFromDiary("weight")
             }]
         },
         options: {}
