@@ -1,3 +1,7 @@
+function loadDataFromCSV() {
+
+}
+
 $(function () {
     let myChart = document.getElementById('weightChart').getContext('2d');
 
