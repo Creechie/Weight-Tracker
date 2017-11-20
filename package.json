@@ -1,8 +1,39 @@
 {
-    "typeAcquisition": {
-        "include": [
-            "jquery"
-        ]
-    }
-
+  "name": "weight-tracker",
+  "description": "A project I'm using to teach myself web development.",
+  "version": "0.1.0",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Creechie/Weight-Tracker.git"
+  },
+  "keywords": [
+    "weight",
+    "tracker",
+    "TDEE",
+    "calories",
+    "fitness",
+    "cut",
+    "bulk",
+    "health"
+  ],
+  "author": "Charlie Creech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Creechie/Weight-Tracker/issues"
+  },
+  "homepage": "https://github.com/Creechie/Weight-Tracker#readme",
+  
+  "typeAcquisition": {
+    "include": [
+      "jquery"
+    ]
+  }
 }

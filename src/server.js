@@ -19,10 +19,16 @@ http.createServer(function(req, res){
         res.writeHead(200, {'Content-Type':'text/javascript'});
         fs.createReadStream(__dirname + req.url ).pipe(res);
     }
+    else if (req.url.indexOf('.json') !== -1) {
+        res.writeHead(200, {
+            'Content-Type':'application/json',
+            'Access-Control-Allow-Origin': IP+':'+PORT});
+        fs.createReadStream(__dirname + req.url ).pipe(res);
+    }
     else {
         res.writeHead(404, {'Content-Type': 'text/html'});
         fs.createReadStream(__dirname+'/404.html').pipe(res);
     }
 
 }).listen(PORT);
-console.log('Server running at http://'+ IP + ':' + PORT);
+console.log('Server running at http://'+ IP + ':' + PORT + '\n');

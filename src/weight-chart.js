@@ -46,23 +46,24 @@ function getAllFromDiary(label) {
 }
 
 $(function () {
+    console.log('Hello');
 
-    // let url = 'http://localhost:8080/user-diary.json';
+    let url = 'http://127.0.0.1:1337/bin/data/user-diary.json';
     
-    // var jsonResult;
+    var jsonResult;
 
-    // console.log('Requesting JSON');
-    // $.getJSON(url, function(data) {
-    //     console.log('Success\n');
-    //     console.log(data);
-    // })
-    // .fail(function(data, textStatus, error) {
-    //     if (!error) console.error("JSON request failed.\n-Status: " + textStatus + "\n-Error: Violating Same-origin policy");
-    //     else console.error("JSON request failed.\n-Status: " + textStatus + "\n-Error: " + error);
-    // })
-    // .always(function(data) {
-    //     console.log("JSON request complete");
-    // });
+    console.log('Requesting JSON');
+    $.getJSON(url, function(data) {
+        console.log('Success\n');
+        console.log(data);
+    })
+    .fail(function(data, textStatus, error) {
+        if (!error) console.error("JSON request failed.\n-Status: " + textStatus + "\n-Error: Violating Same-origin policy");
+        else console.error("JSON request failed.\n-Status: " + textStatus + "\n-Error: " + error);
+    })
+    .always(function(data) {
+        console.log("JSON request complete");
+    });
 
 
 
