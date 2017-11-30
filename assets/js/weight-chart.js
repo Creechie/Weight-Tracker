@@ -12,15 +12,34 @@ $(function () {
         let myChart = document.getElementById('weightChart').getContext('2d');
 
         let massPopChart = new Chart(weightChart, {
-            type: 'line', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
+            type: 'line',
             data: {
                 labels: diary.dates,
                 datasets: [{
                     label: 'Weight', 
                     data: diary.weights,
+
+                    // Chart options
+                    backgroundColor: 'rgba(79, 129, 189, 0.7)',
+                    fill: false,
+                    spanGaps: true,
+                    // Line options
+                    lineTension: 0.1,
+                    borderColor: 'rgb(79, 129, 189)',
+                    borderWidth: 3,
+                    // Point options
+                    pointStyle: 'dot',
+                    pointRadius: 0,
+                    pointHoverRadius: 5,
+                    pointHitRadius: 10,
+                    pointBorderColor: 'rgba(0, 0, 0, 0.5)',
+                    pointBorderWidth: 2,
                 }]
             },
-            options: {}
+            options: {
+                
+                
+            }
         });
     });
 });
