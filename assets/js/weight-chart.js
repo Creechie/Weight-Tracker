@@ -1,7 +1,11 @@
 $(function () {
     $.getJSON('http://127.0.0.1:8080/assets/data/user-diary.json', function (data) {
 
-        var diary = {dates:[], weights:[], calories:[]};
+        var diary = {
+            dates: [],
+            weights: [],
+            calories: []
+        };
         var i = 0;
         data.diary.forEach(entry => {
             diary.dates[i] = entry.date;
@@ -17,7 +21,7 @@ $(function () {
             data: {
                 labels: diary.dates,
                 datasets: [{
-                    label: 'Weight', 
+                    label: 'Weight',
                     data: diary.weights,
 
                     // Chart options
