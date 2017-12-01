@@ -13,10 +13,9 @@ $(function () {
             diary.calories[i] = entry.calories;
             i++;
         });
-
-        let myChart = document.getElementById('weightChart').getContext('2d');
-
-        let massPopChart = new Chart(weightChart, {
+        
+        var myChart = document.getElementById('weightChart').getContext('2d');
+        var massPopChart = new Chart(weightChart, {
             type: 'line',
             data: {
                 labels: diary.dates,
@@ -24,25 +23,49 @@ $(function () {
                     label: 'Weight',
                     data: diary.weights,
 
-                    // Chart options
-                    backgroundColor: 'rgba(80, 130, 190, 0.7)',
+                    backgroundColor: 'rgba(80, 130, 190, 0.5)',
                     fill: false,
-                    spanGaps: true,
-                    // Line options
-                    lineTension: 0.1,
+                    spanGaps: false,
+                    lineTension: 0.2,
                     borderColor: 'rgb(80, 130, 190)',
                     borderWidth: 3,
-                    // Point options
-                    pointStyle: 'dot',
                     pointRadius: 0,
                     pointHoverRadius: 5,
                     pointHitRadius: 10,
-                    pointBorderColor: 'rgba(0, 50, 100, 0.5)',
+                    pointBorderColor: 'rgba(0, 50, 100, 0.6)',
                     pointBorderWidth: 2,
+                    borderJoinStyle: 'round'
+                }, {
+                    // Dashed NULL sections
+                    data: diary.weights,
+
+                    fill: true,
+                    backgroundColor: 'rgba(80, 130, 190, 0.05)',
+                    spanGaps: true,
+                    lineTension: 0,
+                    borderColor: 'rgb(80, 130, 190)',
+                    borderWidth: 1.5,
+                    borderDash: [5, 2],
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    pointHitRadius: 0,
+                    borderJoinStyle: 'bevel'
                 }]
             },
             options: {
-
+                tooltips: {
+                    caretSize: 10,
+                    cornerRadius: 10,
+                    titleFontSize: 15,
+                    titleFontColor: '#000',
+                    bodyFontColor: '#000',
+                    backgroundColor: 'rgba(80, 130, 190, 0.2)',
+                    borderWidth: 2,
+                    borderColor: 'rgba(0, 50, 100, 0.8)',
+                    displayColors: false,
+                    yAlign: 'bottom',
+                    xAlign: 'center',
+                }
             }
         });
     });
