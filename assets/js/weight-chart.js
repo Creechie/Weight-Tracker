@@ -49,15 +49,17 @@ $(function () {
                     pointRadius: 0,
                     pointHoverRadius: 0,
                     pointHitRadius: 0,
-                    borderJoinStyle: 'bevel'
+                    borderJoinStyle: 'bevel',
                 }]
             },
             options: {
                 tooltips: {
                     caretSize: 10,
                     cornerRadius: 10,
-                    titleFontSize: 15,
+                    titleFontSize: 12,
                     titleFontColor: '#000',
+                    titleMarginBottom: 2,
+                    bodyFontSize: 15,
                     bodyFontColor: '#000',
                     backgroundColor: 'rgba(80, 130, 190, 0.2)',
                     borderWidth: 2,
@@ -65,7 +67,8 @@ $(function () {
                     displayColors: false,
                     yAlign: 'bottom',
                     xAlign: 'center',
-                }
+                    
+                },
             }
         });
     });
