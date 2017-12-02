@@ -1,3 +1,4 @@
+
 $(function () {
     $.getJSON('http://127.0.0.1:8080/assets/data/user-diary.json', function (data) {
 
@@ -50,6 +51,7 @@ $(function () {
                     pointHoverRadius: 0,
                     pointHitRadius: 0,
                     borderJoinStyle: 'bevel',
+                }
                 }]
             },
             options: {
@@ -67,7 +69,12 @@ $(function () {
                     displayColors: false,
                     yAlign: 'bottom',
                     xAlign: 'center',
-                    
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'index',
+                    intersect: false,
                 },
                 scales: {
                     yAxes: [{
