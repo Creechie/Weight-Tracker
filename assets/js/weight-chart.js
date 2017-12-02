@@ -1,6 +1,6 @@
 function trendLinear(xData, yData) {
     if (xData.length !== yData.length) throw 'Length of x and y data does not match';
-    var n = xData.length-1;
+    var n = xData.length - 1;
     return {
         x1: xData[1],
         x2: xData[n],
@@ -26,7 +26,7 @@ $(function () {
             i++;
         });
         var trendPoints = trendLinear(diary.dates, diary.weights);
-        
+
         var myChart = document.getElementById('weightChart').getContext('2d');
         var massPopChart = new Chart(weightChart, {
             type: 'line',
@@ -66,20 +66,18 @@ $(function () {
                     borderJoinStyle: 'bevel',
                 }, {
                     // Trend line
-                    data: [
-                        {
+                    data: [{
                             x: trendPoints.x1,
                             y: trendPoints.y1,
                         }, {
-                            x: trendPoints.x2, 
+                            x: trendPoints.x2,
                             y: trendPoints.y2
                         }
-                        
                     ],
-                    borderColor: 'rgba(255, 13, 10, 0.5)',
+                    borderColor: 'rgba(220, 100, 40, 0.5)',
                     pointRadius: 10,
                     fill: false,
-                    borderDash: [5, 2],
+                    borderDash: [5, 1],
                 }]
             },
             options: {
@@ -99,9 +97,13 @@ $(function () {
                     xAlign: 'center',
                     mode: 'index',
                     intersect: false,
+                    filter: function(tooltipItems) {
+                        if(tooltipItems.datasetIndex === 0) return true;
+                    },
                     callbacks: {
-                        label: function(tooltipItems, data) { 
+                        label: function (tooltipItems, data) {
                             return tooltipItems.yLabel + ' Kg';
+                            //return data.datasets[tooltipItems.datasetIndex].label +': ' + tooltipItems.yLabel + ' Kg';
                         }
                     }
                 },
@@ -111,18 +113,18 @@ $(function () {
                 },
                 scales: {
                     yAxes: [{
-                      ticks: {
-                        //mirror: true
-                      }
+                        ticks: {
+                            //mirror: true
+                        }
                     }],
                     xAxes: [{
                         ticks: {
-                          fontSize: 10,
-                          //autoSkip: false,
-                          maxRotation: 0,
-                          minRotation: 0
+                            fontSize: 10,
+                            //autoSkip: false,
+                            maxRotation: 0,
+                            minRotation: 0
                         }
-                      }]
+                    }]
                 },
                 legend: {
                     display: false
