@@ -8,7 +8,7 @@ $(function () {
         };
         var i = 0;
         data.diary.forEach(entry => {
-            diary.dates[i] = entry.date;
+            diary.dates[i] = entry.date.slice(0, -5);
             diary.weights[i] = entry.weight;
             diary.calories[i] = entry.calories;
             i++;
@@ -74,11 +74,20 @@ $(function () {
                       ticks: {
                         //mirror: true
                       }
-                    }]
+                    }],
+                    xAxes: [{
+                        ticks: {
+                          fontSize: 10,
+                          //autoSkip: false,
+                          maxRotation: 0,
+                          minRotation: 0
+                        }
+                      }]
                 },
                 legend: {
                     display: false
                 },
+                responsive: true,
                 maintainAspectRatio: false,
             }
         });

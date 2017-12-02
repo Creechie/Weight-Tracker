@@ -204,8 +204,10 @@ body {
 }
 
 #weightChart {
-    height: 400px;
+    height: 350px;
+
 }
+
 
 .noise {
 	position: relative;
