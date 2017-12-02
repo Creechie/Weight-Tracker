@@ -12,7 +12,6 @@ function trendLinear(xData, yData) {
 
 $(function () {
 	$.getJSON('http://127.0.0.1:8080/assets/data/user-diary.json', function (data) {
-
 		var diary = {
 			dates: [],
 			weights: [],
@@ -20,12 +19,7 @@ $(function () {
 		};
 		var i = 0;
 		data.diary.forEach(entry => {
-			// Rip date info from string
-			var year = entry.date.substr(6, 4);
-			var month = entry.date.substr(3, 2);
-			var day = entry.date.substr(0, 2);
-
-			diary.dates[i] = new Date(year, month - 1, day);
+			diary.dates[i] = moment(entry.date, 'DD-MM-YYYY');
 			diary.weights[i] = entry.weight;
 			diary.calories[i] = entry.calories;
 			i++;
