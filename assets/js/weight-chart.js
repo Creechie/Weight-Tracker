@@ -1,3 +1,14 @@
+function trendLinear(xData, yData) {
+    if (xData.length !== yData.length) throw 'Length of x and y data does not match';
+    var n = xData.length-1;
+    return {
+        x1: xData[1],
+        x2: xData[n],
+        y1: yData[1],
+        y2: yData[n]
+    };
+
+}
 
 $(function () {
     $.getJSON('http://127.0.0.1:8080/assets/data/user-diary.json', function (data) {
@@ -14,6 +25,7 @@ $(function () {
             diary.calories[i] = entry.calories;
             i++;
         });
+        var trendPoints = trendLinear(diary.dates, diary.weights);
         
         var myChart = document.getElementById('weightChart').getContext('2d');
         var massPopChart = new Chart(weightChart, {
@@ -51,7 +63,22 @@ $(function () {
                     pointHoverRadius: 0,
                     pointHitRadius: 0,
                     borderJoinStyle: 'bevel',
-                }
+                }, {
+                    // Trend line
+                    data: [
+                        {
+                            x: trendPoints.x1,
+                            y: trendPoints.y1,
+                        }, {
+                            x: trendPoints.x2, 
+                            y: trendPoints.y2
+                        }
+                        
+                    ],
+                    borderColor: 'rgba(255, 13, 10, 0.5)',
+                    pointRadius: 10,
+                    fill: false,
+                    borderDash: [5, 2],
                 }]
             },
             options: {
