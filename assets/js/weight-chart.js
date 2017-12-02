@@ -113,9 +113,10 @@ $(function () {
 					xAxes: [{
 						type: 'time',
 						time: {
-						  displayFormats: {
-							'day': 'MMM DD',
-						  }
+							displayFormats: {
+								'day': 'MMM DD',
+							},
+							tooltipFormat: 'DD-MMM-YYYY',
 						}
 					}]
 				},
