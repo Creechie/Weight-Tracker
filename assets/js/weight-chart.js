@@ -39,7 +39,7 @@ $(function () {
                     backgroundColor: 'rgba(80, 130, 190, 0.5)',
                     fill: false,
                     spanGaps: false,
-                    lineTension: 0.2,
+                    lineTension: 0,
                     borderColor: 'rgb(80, 130, 190)',
                     borderWidth: 3,
                     pointRadius: 0,
@@ -47,7 +47,8 @@ $(function () {
                     pointHitRadius: 10,
                     pointBorderColor: 'rgba(0, 50, 100, 0.6)',
                     pointBorderWidth: 2,
-                    borderJoinStyle: 'round'
+                    borderJoinStyle: 'round',
+
                 }, {
                     // Dashed NULL sections
                     data: diary.weights,
@@ -98,6 +99,11 @@ $(function () {
                     xAlign: 'center',
                     mode: 'index',
                     intersect: false,
+                    callbacks: {
+                        label: function(tooltipItems, data) { 
+                            return tooltipItems.yLabel + ' Kg';
+                        }
+                    }
                 },
                 hover: {
                     mode: 'index',
