@@ -1,13 +1,16 @@
 body {
     font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    /* background: #242b31; */
 }
 
 #wrapper {
     padding-left: 0;
+    /* margin-left: 12.5vw; */
+    /* margin-right: 12.5vw; */
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
 }
 #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: 12.5vw;
 }
 
 #sidebar-wrapper {
@@ -25,7 +28,7 @@ body {
 }
 
 #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: 12.5vw;
 }
 
 
@@ -48,16 +51,17 @@ body {
 }
 
 .sidebar-brand {
-    height: 60px;
+    height: 3vw;
     width: 100%; 
     padding: 5px;
     padding-left: 10px;    
     color: #ccc;
     border-bottom: 1px solid #111;
+    
 }
-.sidebar-brand h1.visible {
+.sidebar-brand h1{
     left: 0px;
-    /* opacity: 1; */
+    font-size: 2.2vw;
 }
 
 .sidebar-nav li a{
@@ -65,9 +69,10 @@ body {
     color: #ccc;
     border-bottom: 1px solid #111;
     display: block;
-    width: 250px;
+    width: 12.5vw;
     padding: 10px;
     text-decoration: none;
+    font-size: 1vw;
 } 
 .sidebar-nav li a:hover   {
     /* Applies to links under the pointer */
@@ -102,8 +107,9 @@ body {
 
 #btn-sidebar-toggle {
     z-index: 101;
-    width: 30px;
-    height: 30px;
+    width: 1.5vw;
+    height: 1.5vw;
+    font-size: 0.8vw;
     margin: 15px;
     padding: 0px;
     position: absolute;
@@ -122,7 +128,7 @@ body {
 
 #header {
     padding: 5px;
-    height: 60px;
+    height: 3vw;
     background: #0664b6;
     color: #fff;
 }
@@ -130,6 +136,7 @@ body {
     margin: 0px;
     margin-left: 80px;
     transition: margin-left 0.1s linear;
+    font-size: 2.2vw;
 }
 #wrapper.toggled #header h1 {
     margin-left: 10px;
