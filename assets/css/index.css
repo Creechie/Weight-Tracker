@@ -203,6 +203,10 @@ body {
     font-size: 1.1vw;
 }
 
+#weightChart {
+    height: 400px;
+}
+
 .noise {
 	position: relative;
     z-index: 1;

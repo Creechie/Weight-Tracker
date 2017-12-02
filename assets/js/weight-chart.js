@@ -69,6 +69,17 @@ $(function () {
                     xAlign: 'center',
                     
                 },
+                scales: {
+                    yAxes: [{
+                      ticks: {
+                        //mirror: true
+                      }
+                    }]
+                },
+                legend: {
+                    display: false
+                },
+                maintainAspectRatio: false,
             }
         });
     });
