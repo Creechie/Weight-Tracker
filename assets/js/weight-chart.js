@@ -20,7 +20,12 @@ $(function () {
         };
         var i = 0;
         data.diary.forEach(entry => {
-            diary.dates[i] = entry.date.slice(0, -5);
+            // Rip date info from string
+            var year = entry.date.substr(6, 4);
+            var month = entry.date.substr(3, 2) - 1;
+            var day = entry.date.substr(0,2);
+
+            diary.dates[i] = new Date(year, month, day);
             diary.weights[i] = entry.weight;
             diary.calories[i] = entry.calories;
             i++;
@@ -67,13 +72,12 @@ $(function () {
                 }, {
                     // Trend line
                     data: [{
-                            x: trendPoints.x1,
-                            y: trendPoints.y1,
-                        }, {
-                            x: trendPoints.x2,
-                            y: trendPoints.y2
-                        }
-                    ],
+                        x: trendPoints.x1,
+                        y: trendPoints.y1,
+                    }, {
+                        x: trendPoints.x2,
+                        y: trendPoints.y2
+                    }],
                     borderColor: 'rgba(220, 100, 40, 0.5)',
                     pointRadius: 10,
                     fill: false,
@@ -97,8 +101,8 @@ $(function () {
                     xAlign: 'center',
                     mode: 'index',
                     intersect: false,
-                    filter: function(tooltipItems) {
-                        if(tooltipItems.datasetIndex === 0) return true;
+                    filter: function (tooltipItems) {
+                        if (tooltipItems.datasetIndex === 0) return true;
                     },
                     callbacks: {
                         label: function (tooltipItems, data) {
