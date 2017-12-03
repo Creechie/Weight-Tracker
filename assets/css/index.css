@@ -39,6 +39,8 @@ body {
 
 .container-fluid{
     padding: 0px;
+    max-height: 100vh;
+    overflow: hidden;
 }
 
 .sidebar-nav{
@@ -210,17 +212,37 @@ body {
     font-size: 1.1vw;
 }
 
-.chart-container {
+.chart-wrapper {
     width: 100%;
     height: 30vh;
     margin-left: -3px;
     margin-top: -5px;
-}
-#weightChart {
-    height: 100%;
-    overflow: hidden;
+    overflow: hidden;  
+ 
 }
 
+#table-container {
+    margin: 50px;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    height: 50.75vh;
+    
+}
+
+#data-entry-container {
+    background: #273f55;
+    color: #ccc;
+    height: 15vh;
+    padding: 10px;
+}
+
+#data-table-container {
+    background: #21303d;
+    color: #ccc;
+    height: 30vh;    
+    padding: 10px;
+    
+}
 
 .noise {
 	position: relative;
