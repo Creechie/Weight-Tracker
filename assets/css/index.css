@@ -213,6 +213,8 @@ body {
 .chart-container {
     width: 100%;
     height: 30vh;
+    margin-left: -3px;
+    margin-top: -5px;
 }
 #weightChart {
     height: 100%;

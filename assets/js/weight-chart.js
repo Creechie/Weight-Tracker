@@ -122,14 +122,14 @@ $(function () {
 						},
 						ticks: {
 							callback: function(dataLabel, index) {
-                                // Hide the label of every 2nd dataset. return null to hide the grid line too
-                                return index % 7 === 0 ? dataLabel : '';
+                                // Only show every 7th label. Return null to hide the grid line too
+								return index % 7 === 1 ? dataLabel : '';							
                             },
 							autoSkip: false,
 							fontSize: 10,
 							minRotation: 0,
 							maxRotation: 0,
-							
+							padding: -25,
 						},
 						gridLines: {
 							
@@ -138,6 +138,9 @@ $(function () {
 					yAxes: [{
 						ticks: {
 							fontSize: 10,
+							display: true,
+							padding: -23,
+							labelOffset: 7,
 						}
 						
 					}]
