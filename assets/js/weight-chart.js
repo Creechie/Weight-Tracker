@@ -113,11 +113,33 @@ $(function () {
 					xAxes: [{
 						type: 'time',
 						time: {
+							stepSize: 1,
+							unit: 'day',
 							displayFormats: {
-								'day': 'MMM DD',
+								'day':'DD MMM'
 							},
 							tooltipFormat: 'DD-MMM-YYYY',
+						},
+						ticks: {
+							callback: function(dataLabel, index) {
+                                // Hide the label of every 2nd dataset. return null to hide the grid line too
+                                return index % 7 === 0 ? dataLabel : '';
+                            },
+							autoSkip: false,
+							fontSize: 10,
+							minRotation: 0,
+							maxRotation: 0,
+							
+						},
+						gridLines: {
+							
 						}
+					}],
+					yAxes: [{
+						ticks: {
+							fontSize: 10,
+						}
+						
 					}]
 				},
 				legend: {
