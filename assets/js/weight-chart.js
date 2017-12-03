@@ -52,7 +52,7 @@ $(function () {
 					// Dashed NULL sections
 					data: diary.weights,
 
-					fill: true,
+					fill: false,
 					backgroundColor: 'rgba(80, 130, 190, 0.05)',
 					spanGaps: true,
 					lineTension: 0,
