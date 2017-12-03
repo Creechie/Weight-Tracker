@@ -217,16 +217,14 @@ body {
     height: 30vh;
     margin-left: -3px;
     margin-top: -5px;
-    overflow: hidden;  
- 
 }
+
 
 #table-container {
     margin: 50px;
     margin-left: 20vw;
     margin-right: 20vw;
     height: 50.75vh;
-    
 }
 
 #data-entry-container {

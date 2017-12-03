@@ -79,6 +79,8 @@ $(function () {
 				}]
 			},
 			options: {
+				responsive: true,
+				maintainAspectRatio: false,
 				tooltips: {
 					caretSize: 10,
 					cornerRadius: 10,
@@ -116,7 +118,7 @@ $(function () {
 							stepSize: 1,
 							unit: 'day',
 							displayFormats: {
-								'day':'DD MMM'
+								'day':'D MMM'
 							},
 							tooltipFormat: 'DD-MMM-YYYY',
 						},
@@ -129,10 +131,10 @@ $(function () {
 							fontSize: 10,
 							minRotation: 0,
 							maxRotation: 0,
-							padding: -25,
+							padding: -15,
 						},
 						gridLines: {
-							
+							drawTicks: false,
 						}
 					}],
 					yAxes: [{
@@ -140,7 +142,7 @@ $(function () {
 							fontSize: 10,
 							display: true,
 							padding: -23,
-							labelOffset: 7,
+							labelOffset: 8,
 						}
 						
 					}]
@@ -148,8 +150,6 @@ $(function () {
 				legend: {
 					display: false
 				},
-				responsive: true,
-				maintainAspectRatio: false,
 			}
 		});
 	});
