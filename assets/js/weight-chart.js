@@ -101,7 +101,7 @@ $(function () {
 					backgroundColor: 'rgba(80, 130, 190, 0.5)',
 					fill: false,
 					spanGaps: false,
-					lineTension: 0,
+					lineTension: 0.2,
 					borderColor: 'rgb(80, 130, 190)',
 					borderWidth: 3,
 					pointRadius: 0,
@@ -120,7 +120,7 @@ $(function () {
 					spanGaps: true,
 					lineTension: 0,
 					borderColor: 'rgb(80, 130, 190)',
-					borderWidth: 1.5,
+					borderWidth: 1,
 					borderDash: [5, 2],
 					pointRadius: 0,
 					pointHoverRadius: 0,
@@ -143,7 +143,7 @@ $(function () {
 				maintainAspectRatio: false,
 				tooltips: {
 					caretSize: 10,
-					cornerRadius: 10,
+					cornerRadius: 15,
 					titleFontSize: 12,
 					titleFontColor: '#000',
 					titleMarginBottom: 2,
@@ -163,7 +163,6 @@ $(function () {
 					callbacks: {
 						label: function (tooltipItems, data) {
 							return tooltipItems.yLabel + ' Kg';
-							//return data.datasets[tooltipItems.datasetIndex].label +': ' + tooltipItems.yLabel + ' Kg';
 						}
 					}
 				},
