@@ -1,30 +1,93 @@
-function trendLinear(xData, yData) {
-	if (xData.length !== yData.length) throw 'Length of x and y data does not match';
-	var n = xData.length - 1;
-	return {
-		x1: xData[1],
-		x2: xData[n],
-		y1: yData[1],
-		y2: yData[n]
-	};
+function multiplyArrays(a1, a2) {
+	if (a1.length !== a2.length) throw 'multiplyArrays: Length of arrays do not match';
+	var result = [];
+	for (let i = 0; i < a1.length; i++)
+		if (a1[i] !== null && a2[i] !== null)
+			result[i] = a1[i] * a2[i];
+	return result;
+}
 
+function sumArray(array) {
+	var total = 0;
+	array.forEach(value => {
+		if (value !== null && !isNaN(value))
+			total += value;
+	});
+	return total;
+}
+
+function countNulls(array) {
+	var count = 0;
+	array.forEach(value => {
+		if (value === null)
+			count++;
+	});
+	return count;
+}
+
+function calculateTrendPoints(xData, yData) {
+	var X, Y, nullCount, n, sumX, sumY, sumXY, sumXX, m;
+	X = xData;
+	Y = yData;
+
+	nullCount = countNulls(yData);
+	n = X.length - nullCount;
+	
+	sumX = sumArray(X);
+	sumY = sumArray(Y);
+	sumXY = sumArray(multiplyArrays(X, Y));
+	sumXX = sumArray(multiplyArrays(X, X));
+
+	// Calculate trend line slope - m
+	m = ((n * sumXY) - (sumX * sumY)) / ((n * sumXX) - (sumX * sumX));
+
+	// Calculate trend line offset - c
+	var c = (sumY - (m * sumX)) / n;
+
+	// Calculate array of trend line points (y = mx + c)
+	var trendPoints = [];
+	for (let i = 0; i < n + nullCount; i++)
+		if (X[i] != null)
+			trendPoints[i] = m * X[i] + c;
+	return trendPoints;
 }
 
 $(function () {
 	$.getJSON('http://127.0.0.1:8080/assets/data/user-diary.json', function (data) {
 		var diary = {
+			id: [],
 			dates: [],
 			weights: [],
 			calories: []
 		};
 		var i = 0;
 		data.diary.forEach(entry => {
+			diary.id[i] = entry.id;
 			diary.dates[i] = moment(entry.date, 'DD-MM-YYYY');
 			diary.weights[i] = entry.weight;
 			diary.calories[i] = entry.calories;
 			i++;
 		});
-		var trendPoints = trendLinear(diary.dates, diary.weights);
+
+		// Clone diary object into an array
+		diaryClone = $.extend(true, {}, diary);
+		var noNullDiary = $.map(diaryClone, function (value, index) {
+			return [value];
+		})
+
+		// Remove (delete ID) elements from clone, where weight = null
+		var initialLength = noNullDiary[0].length;
+		for (let i = 0; i < noNullDiary[0].length; i++) {
+			if (noNullDiary[2][i] === null) {
+				noNullDiary[0][i] = null;
+			}
+		}
+
+		// Trend line calculation
+		var x = noNullDiary[0]; // (0,1,2,3,...,n)
+		var y = noNullDiary[2];
+
+		var trendPoints = calculateTrendPoints(x, y);
 
 		var myChart = document.getElementById('weightChart').getContext('2d');
 		var massPopChart = new Chart(weightChart, {
@@ -65,15 +128,12 @@ $(function () {
 					borderJoinStyle: 'bevel',
 				}, {
 					// Trend line
-					data: [{
-						x: trendPoints.x1,
-						y: trendPoints.y1,
-					}, {
-						x: trendPoints.x2,
-						y: trendPoints.y2
-					}],
+					data: trendPoints,
 					borderColor: 'rgba(220, 100, 40, 0.5)',
-					pointRadius: 10,
+					pointRadius: 0,
+					pointHoverRadius: 0,
+					pointHitRadius: 0,
+					spanGaps: true,
 					fill: false,
 					borderDash: [5, 1],
 				}]
@@ -118,15 +178,15 @@ $(function () {
 							stepSize: 1,
 							unit: 'day',
 							displayFormats: {
-								'day':'D MMM'
+								'day': 'D MMM'
 							},
 							tooltipFormat: 'DD-MMM-YYYY',
 						},
 						ticks: {
-							callback: function(dataLabel, index) {
-                                // Only show every 7th label. Return null to hide the grid line too
-								return index % 7 === 1 ? dataLabel : '';							
-                            },
+							callback: function (dataLabel, index) {
+								// Only show every 7th label. Return null to hide the grid line too
+								return index % 7 === 1 ? dataLabel : '';
+							},
 							autoSkip: false,
 							fontSize: 10,
 							minRotation: 0,
@@ -144,7 +204,7 @@ $(function () {
 							padding: -23,
 							labelOffset: 8,
 						}
-						
+
 					}]
 				},
 				legend: {
