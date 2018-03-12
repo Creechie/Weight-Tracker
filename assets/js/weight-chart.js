@@ -53,7 +53,7 @@ function calculateTrendPoints(xData, yData) {
 }
 
 $(function () {
-	$.getJSON('http://127.0.0.1:8080/assets/data/user-diary.json', function (data) {
+	$.getJSON('http://localhost:8080/assets/data/user-diary.json', function (data) {
 		var diary = {
 			id: [],
 			dates: [],
