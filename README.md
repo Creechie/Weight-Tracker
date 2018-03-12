@@ -18,13 +18,21 @@ Made to replace, simplify, and expand bulky spreadsheets and pen-and-paper recor
 * Data tables
   * Main page
   * Full data table page
+* .csv importing/exporting
 * Rework colour scheme
 * Chart scaling
+* Chart labelling
+  * Vertical line markers with notes
+  * Area highlight marker with notes
+  * Also display in table view
 * Profile editor
   * Personal stats, goal, e.c.t.
 * Help section
 
 ## Maybes
 
+* Multiple chart label colours/categories
+  > Example: Green markers could represnt holidays, Red - cheat days, e.c.t.
+* Progress photo uploader + viewer
 * Dark/light themes
 * Theme colour picker
