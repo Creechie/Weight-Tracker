@@ -6,7 +6,7 @@ Made to replace, simplify, and expand bulky spreadsheets and pen-and-paper recor
 ## Features
 
 * Calculates what I'm calling a "Rolling TDEE Value" (Total Daily Energy Expenditure).
-  * The app will start you off with an estimate of the amount of calories you should each each day to achieve you personal goal.
+  * The app will start you off with an estimate of the amount of calories you should consume each day to achieve you personal goal.
   * Over time, as more data is entered, this estimate gets more and more accurate as it adjusts on the fly to your calorific intake and weight fluxuations.
 * Graphs that give valuable insight on progress
 * Data importing/exporting makes it possible to quickly tranfer all of your progress if curently using another tool or spreadsheet
@@ -33,6 +33,7 @@ Made to replace, simplify, and expand bulky spreadsheets and pen-and-paper recor
 
 * Multiple chart label colours/categories
   > Example: Green markers could represnt holidays, Red - cheat days, e.c.t.
+* Conditional formatting for table view
 * Progress photo uploader + viewer
 * Dark/light themes
 * Theme colour picker
