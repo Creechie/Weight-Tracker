@@ -13,6 +13,7 @@ Made to replace, simplify, and expand bulky spreadsheets and pen-and-paper recor
 
 ## To-dos
 
+* CSS grid rework
 * TDEE calculations
 * Rolling average trendline. Linear isn't as useful for long-term tracking
 * Data tables

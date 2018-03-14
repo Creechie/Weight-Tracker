@@ -53,6 +53,8 @@ function calculateTrendPoints(xData, yData) {
 }
 
 $(function () {
+	// https://undaunted-confessio.000webhostapp.com/assets/data/user-diary.json
+	// http://localhost:8080/assets/data/user-diary.json
 	$.getJSON('http://localhost:8080/assets/data/user-diary.json', function (data) {
 		var diary = {
 			id: [],

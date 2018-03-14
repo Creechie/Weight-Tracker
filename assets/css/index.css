@@ -222,26 +222,63 @@ body {
 }
 
 
-#table-container {
+#data-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+    
     margin: 50px;
     margin-left: 20vw;
     margin-right: 20vw;
-    height: 50.75vh;
-}
-
-#data-entry-container {
-    background: #273f55;
     color: #ccc;
-    height: 15vh;
-    padding: 10px;
-}
-
-#data-table-container {
-    background: #21303d;
-    color: #ccc;
-    height: 30vh;    
-    padding: 10px;
+    text-align: center;
     
+}
+
+#current-week-data {
+    display: grid;
+    grid-template-columns: repeat(7,1fr); 
+    grid-template-rows: 1fr 2fr 2fr;   
+       
+    text-align: center;
+    background: #000;
+    
+}
+#current-week-data div{
+    border: 1px solid red;
+}
+
+#current-week-overview {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+
+    border: 1px solid green;
+    background: #111;
+}
+#overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    border: 1px solid #fff;
+}
+#overview-averages {
+    display: grid;
+    grid-template-rows: 20% 40% 40%;
+    border: 1px solid red;
+}
+
+
+#historical-data {
+    background: #222;
+    padding: 10px;
+}
+
+#historical-data-overview {
+    background: #333;
 }
 
 .noise {
