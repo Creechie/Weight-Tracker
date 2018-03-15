@@ -32,6 +32,7 @@ Made to replace, simplify, and expand bulky spreadsheets and pen-and-paper recor
 
 ## Maybes
 
+* Body fat % tracking
 * Multiple chart label colours/categories
   > Example: Green markers could represnt holidays, Red - cheat days, e.c.t.
 * Conditional formatting for table view
