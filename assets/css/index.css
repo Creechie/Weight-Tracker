@@ -4,6 +4,12 @@ body {
     /* background: #242b31; */
 }
 
+h2 {
+    font-size: 1em;
+    font-style: bold;
+    border: 1px solid #ccc;
+}
+
 #wrapper {
     padding-left: 0;
     /* margin-left: 12.5vw; */
@@ -221,10 +227,14 @@ body {
     margin-top: -5px;
 }
 
+.no-pad {
+    padding: 0px;
+}
+
 
 #data-container {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 4fr 2fr;
     grid-template-rows: 100px 1fr;
     grid-column-gap: 10px;
     grid-row-gap: 20px;
@@ -234,20 +244,20 @@ body {
     margin-right: 20vw;
     color: #ccc;
     text-align: center;
+
     
+}
+
+#current-week-labels {
+    display: grid;
+    grid-template-rows: 20% 40% 40%;
 }
 
 #current-week-data {
     display: grid;
     grid-template-columns: repeat(7,1fr); 
-    grid-template-rows: 1fr 2fr 2fr;   
-       
-    text-align: center;
+    grid-template-rows: 20% 40% 40%;   
     background: #000;
-    
-}
-#current-week-data div{
-    border: 1px solid red;
 }
 
 #current-week-overview {
@@ -255,26 +265,25 @@ body {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
 
-    border: 1px solid green;
     background: #111;
 }
 #overview {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-
-    border: 1px solid #fff;
+    grid-template-rows: 20% 80%;
 }
 #overview-averages {
     display: grid;
     grid-template-rows: 20% 40% 40%;
-    border: 1px solid red;
 }
 
 
 #historical-data {
+    display: grid;
+    grid-template-columns: repeat(7,1fr); 
+    grid-template-rows: 20% 40% 40%;   
+
     background: #222;
-    padding: 10px;
 }
 
 #historical-data-overview {
