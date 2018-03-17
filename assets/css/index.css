@@ -127,8 +127,6 @@ body {
     color: #ccc;
 }
 
-
-
 #header {
     padding: 5px;
     height: 3vw;
@@ -296,6 +294,8 @@ body {
     grid-template-columns: repeat(7,1fr); 
     grid-template-rows: 1fr 1fr;
     background: #222;
+    min-height: 4.375em;    /* Adjustment to make the same height as 
+                            current-week-data */
 }
 
 #historical-data-overview {
@@ -319,4 +319,3 @@ body {
     grid-column: 3 / 4;
     grid-row: 1 / 3;
 }
-
