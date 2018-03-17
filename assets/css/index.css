@@ -1,5 +1,5 @@
 body {
-    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     /* Dark theme */
     /* background: #242b31; */
 }
@@ -226,21 +226,31 @@ body {
     padding-top: 0.6em;
     font-size: 1.5em;
 }
+.table-label {
+    color: #111;
+    padding-top: 0.8em;
+    text-align: right;
+    
+}
 
-#data-container {
+#current-week-container {
     display: grid;
     grid-template-columns: 1fr 4fr 2fr;
     grid-template-rows: 6em 1fr;
     grid-column-gap: 0.6em;
-    grid-row-gap: 1.2em;
-    margin: 3em;
+    margin-top: 4em;
+    margin-bottom: 1.2em;  
     margin-left: 25em;
     margin-right: 25em;
     color: #ccc;
     text-align: center;
 }
-#data-container > * > *{
-    border: 1px dashed rgba(255, 255, 255, 0.2);
+
+#current-week-container > * > *{
+    border: 1px dashed rgba(255, 255, 255, 0.2);    /* Debug */
+}
+#historical-data-container > * > *{
+    border: 1px dashed rgba(255, 255, 255, 0.2);    /* Debug */
 }
 
 #current-week-labels {
@@ -289,20 +299,35 @@ body {
     grid-row: 2 / 4
 }
 
-#historical-data {
+#historical-data-container {
+    display: grid;
+    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    grid-column-gap: 0.6em;
+    grid-row-gap: 0.2em;
+    margin-left: 25em;
+    margin-right: 25em;
+    color: #ccc;
+    text-align: center; 
+}
+
+
+
+.historical-data {
     display: grid;
     grid-template-columns: repeat(7,1fr); 
     grid-template-rows: 1fr 1fr;
     background: #222;
-    min-height: 4.375em;    /* Adjustment to make the same height as 
-                            current-week-data */
+    height: 4.375em;    /* Adjustment to make the same height as 
+                        current-week-data */
 }
 
-#historical-data-overview {
+.historical-data-overview {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
     background: #333;
+    
 }
 .average-weight {
     grid-column: 1 / 2;
@@ -318,4 +343,15 @@ body {
 .tdee {
     grid-column: 3 / 4;
     grid-row: 1 / 3;
+}
+
+.fade-overlay {
+    position: absolute;
+    top: 75vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(#0000, #FFFE);
+    margin-left: 25em;
+    margin-right: 25em;
 }
