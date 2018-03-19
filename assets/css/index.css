@@ -1,10 +1,21 @@
+:root {
+    --palette-dark:     #003345;
+    --palette-light:    #024358;
+    --palette-banner:   #0070f1;
+    --palette-off-white:#CADCE2;
+
+    --palette-negative: #AC1E2D;
+    --palette-positive: #086642;
+    --palette-amber:    #dc6428;
+}
+
 body {
     font-family: 'Ubuntu', Tahoma, Verdana, sans-serif;
     font-weight: 400;
     /* Dark theme */
     /* background: #242b31; */ /*292E3B*/
     
-    background: #003345;
+    background: var(--palette-dark);
 }
 
 .light-font { font-weight: 300; }
@@ -28,11 +39,11 @@ body {
     width: 0;
     height: 100%;
     overflow-y: auto;
-    background: #22313F;
+    background: var(--palette-dark);
     font-size: 18px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     overflow: hidden;
-    
+    border-right: hsl(0,0%,0%) solid 1px 
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -64,7 +75,7 @@ body {
     width: 100%;
     padding: 5px;
     padding-left: 10px;
-    color: #ccc;
+    color: var(--palette-off-white);
     border-bottom: 1px solid #111;
 }
 .sidebar-brand h1 {
@@ -73,8 +84,8 @@ body {
 }
 
 .sidebar-nav li a {
-    background: #273a4b;
-    color: #ccc;
+    background: var(--palette-light);
+    color: var(--palette-off-white);
     border-bottom: 1px solid #111;
     display: block;
     width: 12.5vw;
@@ -85,14 +96,14 @@ body {
 .sidebar-nav li a:hover {
     /* Applies to links under the pointer */
     text-decoration: none;
-    background-color: #2d4050;
-    color: #ccc;
+    background-color: hsl(199, 51%, 25%);
+    color: var(--palette-off-white);
 }
 .sidebar-nav li a:active {
     /* Applies to activated links */
-    background-color: #223240;
-    color: #fff;
-    text-shadow: 0px 0px 2px #fff;
+    background-color: var(--palette-dark);
+    color: var(--palette-off-white);
+    text-shadow: 0px 0px 2px var(--palette-off-white);
 }
 
 #btn-settings {
@@ -100,15 +111,15 @@ body {
     height: 50px;
     position: absolute;
     bottom: 0px;
-    background: #273a4b;
-    color: #ccc;
+    background: var(--palette-light);
+    color: var(--palette-off-white);
     padding: 0px;
 }
 #btn-settings:hover {
-    background: #2d4050;
+    background: hsl(199, 51%, 25%);
 }
 #btn-settings:active {
-    background: #223240;
+    background: var(--palette-dark);
     color: #fff;
     text-shadow: 0px 0px 2px #fff;
 }
@@ -126,18 +137,18 @@ body {
 }
 
 #btn-sidebar-toggle:hover {
-    text-shadow: 0px 0px 12px #fff5;
+    text-shadow: 0px 0px 12px hsla(195, 29%, 84%, 0.333);
 }
 
 #wrapper.toggled #btn-sidebar-toggle {
     left: -70px;
-    color: #ccc;
+    color: var(--palette-off-white);
 }
 
 #header {
     padding: 5px;
     height: 3vw;
-    background: #0070f1;
+    background: var(--palette-banner);
     color: #fff;
 }
 
@@ -145,7 +156,7 @@ body {
     margin: 0px;
     margin-left: 80px;
     transition: margin-left 0.1s linear;
-    text-shadow: 1px 3px 5px #00000055;
+    text-shadow: 1px 3px 5px hsla(0, 0%, 0%, 0.333);
 }
 
 #wrapper.toggled #header h1 {
@@ -169,8 +180,8 @@ body {
 }
 
 .stat-header {
-    color: #CADCE2;
-    background: #024358;
+    color: var(--palette-off-white);
+    background: var(--palette-light);
     padding: 5px;
 }
 
@@ -180,7 +191,7 @@ body {
 
 .stat-big {
     font-size: 2.5vw;
-    text-shadow: 5px 5px 5px #00000055;
+    text-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.333);
 }
 
 #current-weight-header {
@@ -322,15 +333,15 @@ body {
 }
 
 .table-label {
-    color: #CADCE2;
+    color: var(--palette-off-white);
     padding-top: 0.8em;
     padding-right: 0.8em;
     text-align: right;
 }
 
 .table-heading {
-    background: #003345;
-    color: #CADCE2;
+    background: var(--palette-dark);
+    color: var(--palette-off-white);
 }
 
 #current-week-container {
@@ -355,14 +366,14 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr 2fr 2fr;
-    background: #024358;
+    background: var(--palette-light);
 }
 
 #current-week-overview {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 2fr 2fr;
-    background: #024358;
+    background: var(--palette-light);
 }
 
 #average-heading {
@@ -405,7 +416,7 @@ body {
     grid-row-gap: 0.8em;
     margin-left: 25em;
     margin-right: 25em;
-    color: #CADCE2;
+    color: var(--palette-off-white);
     text-align: center;
 }
 
@@ -413,7 +424,7 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: 1fr 1fr;
-    background: #024358;
+    background: var(--palette-light);
     height: 4.375em;
     /* Adjustment to make the same height as 
                         current-week-data */
@@ -423,7 +434,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
-    background: #024358;
+    background: var(--palette-light);
 }
 
 .average-weight {
@@ -446,10 +457,10 @@ body {
 }
 
 .negative {
-    background: linear-gradient(#AC1E2D, #811924);
+    background: linear-gradient(var(--palette-negative), #811924);
 }
 
-/* .positive {  background: linear-gradient(#086642, #0a4d33); } */
+/* .positive {  background: linear-gradient(var(--palette-negative), #0a4d33); } */
 
 .fade-overlay {
     position: fixed;
