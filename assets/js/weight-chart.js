@@ -104,7 +104,7 @@ $(function () {
 					fill: false,
 					spanGaps: false,
 					lineTension: 0.2,
-					borderColor: 'rgb(80, 130, 190)',
+					borderColor: '#0070f1',
 					borderWidth: 3,
 					pointRadius: 0,
 					pointHoverRadius: 5,
