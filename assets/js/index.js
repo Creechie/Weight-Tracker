@@ -11,6 +11,8 @@ function validate(evt) {
     var key = theEvent.keyCode || theEvent.which;
     key = String.fromCharCode( key );
     var regex = /[0-9]|\./;
+    // Full string validation = /^[1-9][0-9]*([0-9]*|\.[0-9]+$)+/;
+ 
     if( !regex.test(key)) {
         theEvent.returnValue = false;
         if(theEvent.preventDefault) theEvent.preventDefault();
