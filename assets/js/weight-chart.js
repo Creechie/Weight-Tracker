@@ -1,5 +1,6 @@
 function multiplyArrays(a1, a2) {
-	if (a1.length !== a2.length) throw 'multiplyArrays: Length of arrays do not match';
+	if (a1.length !== a2.length) 
+		throw 'multiplyArrays: Length of arrays do not match';
 	var result = [];
 	for (let i = 0; i < a1.length; i++)
 		if (a1[i] !== null && a2[i] !== null)
