@@ -4,12 +4,7 @@
     --palette-banner:   #0070f1;
     --palette-off-white:#fff;
 
-    /* --palette-dark:     hsl(196, 0%, 14%);
-    --palette-light:    hsl(195, 0%, 18%);
-    --palette-banner:   hsl(212, 0%, 47%);
-    --palette-off-white:hsl(0, 0%, 100%); */
-
-    --palette-sidebar:  hsl(217, 0%, 13%);
+    --palette-sidebar:  #212121;
     --palette-negative: #ac1e2d;
     --palette-positive: #086642;
     --palette-amber:    #dc6428;
@@ -410,7 +405,6 @@ form {
     left: 0;
     right: 0;
     background: linear-gradient(#00334500, #003345FF);
-    background: linear-gradient(hsla(196, 0%, 14%, 0), hsl(196, 0%, 14%));
     
     margin-left: 25em;
     margin-right: 25em;
