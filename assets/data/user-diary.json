@@ -1,4 +1,8 @@
-{"diary":[
+{
+    "name":"Charlie Creech",
+    "age":22,
+    "height":174,
+    "diary":[
     { "id" : 0, "date":"06-08-2017", "weight": null, "calories": null },
     { "id" : 1, "date":"07-08-2017", "weight": 78.8, "calories": 841 },
     { "id" : 2, "date":"08-08-2017", "weight": 79.2, "calories": 1495 },
