@@ -1,5 +1,5 @@
 var fs = require('fs');
-var data = fs.readFileSync('assets/data/user-diary.json');
+var data = fs.readFileSync('assets/data/users.json');
 var userObject = JSON.parse(data)
 
 console.log('Server is starting...');
@@ -20,6 +20,8 @@ server.use('/assets', express.static('assets'));
 server.get('/', sendIndex);
 server.get('/all', sendAll);
 server.get('/search/:user/', searchUser);
+server.get('/:user/diary', getDiary);
+
 
 function sendIndex(req, res) {
     res.sendFile(__dirname + '/index.html');
@@ -35,14 +37,14 @@ function searchUser(req, res) {
     var reply = {};
 
     console.log('Looking for user \'' + name + '\'...');
-    
-    if (userObject.name == name) {
+
+    if (userObject[name]) {
         console.log('Found!');
         reply = {
             status: "Found",
             user: name,
-            age: userObject.age,
-            height: userObject.height
+            age: userObject[name].age,
+            height: userObject[name].height
         }
     } else {
         console.log('User was not found');
@@ -53,3 +55,19 @@ function searchUser(req, res) {
     }
     res.send(reply);
 }
+
+function getDiary(req, res) {
+    var user = req.params.user;
+
+    console.log('Getting ' + user + '\'s diary...');
+
+    if (userObject[user]) {
+        console.log('Found!');
+        res.send(userObject[user].diary);
+
+    } else {
+        console.log('User does not exist');
+        res.send('User "'+user+'" does not exist')
+    }
+}
+
