@@ -1,6 +1,6 @@
 var fs = require('fs');
 var data = fs.readFileSync('assets/data/users.json');
-var userObject = JSON.parse(data)
+var userObject = JSON.parse(data);
 
 console.log('Server is starting...');
 
@@ -21,6 +21,7 @@ server.get('/', sendIndex);
 server.get('/all', sendAll);
 server.get('/search/:user/', searchUser);
 server.get('/:user/diary', getDiary);
+server.get('/:user/add/:date?/:weight?/:calories?', addEntry);
 
 
 function sendIndex(req, res) {
@@ -67,7 +68,71 @@ function getDiary(req, res) {
 
     } else {
         console.log('User does not exist');
-        res.send('User "'+user+'" does not exist')
+        res.send('User "' + user + '" does not exist')
     }
 }
 
+function writeToFile() {
+    var data = JSON.stringify(userObject, null, 2);
+    fs.writeFile('assets/data/users.json', data, function (err) {
+        console.log('Diary saved!')
+    });
+}
+
+function addEntry(req, res) {
+    var user = req.params.user;
+    var date = req.params.date;
+    var weight = Number(req.params.weight);
+    var calories = Number(req.params.calories);
+    var diary = userObject[user].diary;
+    var reply = {
+        user: user,
+        date: date,
+        weight: weight,
+        calories: calories,
+        status: "Success",
+    };
+
+    if (date && weight && calories) {
+        // loop through diary to find matching date
+        var found = false;
+        for (let i = 0; i < diary.length; i++) {
+            const entry = diary[i];
+            // if existing entry is found, overwrite that entry
+            if (entry.date == date) {
+                found = true;
+                overwrite(user, weight, calories, i);
+                writeToFile();
+                res.send(reply);
+                break;
+            }
+        }
+        if (!found) {
+            var newEntry = {
+                "date": date,
+                "weight": weight,
+                "calories": calories
+            };
+            userObject[user].diary.push(newEntry);
+            writeToFile();
+            res.send(reply);
+        }
+
+    } else { // !(date && weight && calories)
+        reply = {
+            user: user,
+            date: date,
+            weight: weight,
+            calories: calories,
+            status: "Failure",
+            msg: "Add request not in format /USERNAME/add/DATE/WEIGHT/CALORIES"
+        };
+        res.send(reply);
+    }
+}
+
+function overwrite(user, weight, kcal, index) {
+    console.log('Overwritting entry %d...', index);
+    userObject[user].diary[index].weight = weight;
+    userObject[user].diary[index].calories = kcal;
+}

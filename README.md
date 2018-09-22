@@ -13,7 +13,6 @@ Made to replace, simplify, and expand bulky spreadsheets and pen-and-paper recor
 
 ## To-dos
 
-* Include 'Add' functionality to API
 * Link API to front-end
 * CSS grid rework
 * TDEE calculations
