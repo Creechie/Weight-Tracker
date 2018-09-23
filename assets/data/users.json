@@ -530,8 +530,13 @@
       },
       {
         "date": "19-11-2017",
-        "weight": 71.7,
-        "calories": 3000
+        "weight": 20,
+        "calories": 2599
+      },
+      {
+        "date": "23-09-2018",
+        "weight": 70.5,
+        "calories": 1234
       }
     ]
   }
