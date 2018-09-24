@@ -1,17 +1,12 @@
 $(function () {
-    // $('#btn-sidebar-toggle').click(function(e) {
-    //     e.preventDefault();
-    //     $("#wrapper").toggleClass("toggled");
-    // });
     $('#newEntry').click(function (err) {
         err.preventDefault();
-        $("#inputBox").fadeIn(function () {
-            // Animation complete
-        });
+        $(".modal").fadeIn("fast");
     });
     $('#submit').click(function (err) {
         err.preventDefault();
         submit();
+        $(".modal").fadeOut("fast");
     });
 });
 

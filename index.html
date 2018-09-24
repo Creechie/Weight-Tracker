@@ -5,7 +5,7 @@
     <title>Weight Tracker</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/index.css">
 
 
@@ -13,15 +13,18 @@
 
 <body>
 
+    <div id="inputModal" class="modal">
+        <div class="modal-content">
+            weight (kg):<input id="weight"><br>
+            kcal:<input id="calories">
+            <button id="submit">OK</button>
+        </div>
+    </div>
+
     <p>User: <span id="username">Charlie Creech</span></p>
 
     <button id="newEntry">Enter today's data</button>
 
-    <div id="inputBox">
-        weight (kg):<input id="weight"><br>
-        kcal:<input id="calories">
-        <button id="submit">OK</button>
-    </div>
 
 
     <!-- jQuery -->
@@ -36,7 +39,7 @@
     <script src="https://use.fontawesome.com/2fe62193a9.js"></script>
 
     <script src="assets/js/index.js"></script>
-    <script src="assets/js/weight-chart.js"></script>
+    <!-- <script src="assets/js/weight-chart.js"></script> -->
 
 </body>
 
