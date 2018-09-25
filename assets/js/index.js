@@ -1,27 +1,42 @@
 $(function () {
-    $('#newEntry').click(function (err) {
+    $('#new-entry').click(function (err) {
         err.preventDefault();
         $(".modal").fadeIn("fast");
     });
-    $('#submit').click(function (err) {
+    $('.modal-submit').click(function (err) {
         err.preventDefault();
-        submit();
+        if (submit())
+            $(".modal").fadeOut("fast");
+    });
+    $('.modal-cancel').click(function (err) {
+        err.preventDefault();
         $(".modal").fadeOut("fast");
     });
 });
 
 function submit() {
-    var username = $("#username").text();
+    var username = $(".username").text();
     var weight = $(":input#weight").val();
     var kcal = $(":input#calories").val();
     var date = today();
 
-    saveJSON(username, date, weight, kcal);
+    if (username && weight && kcal && date) {
+        saveJSON(username, date, weight, kcal);
+        return true;
+    }
+    else {
+        showError("submit");
+        return false;
+    }
 }
 
 function saveJSON(user, date, weight, kcal) {
     var req = '/' + user + '/add/' + date + '/' + weight + '/' + kcal;
     $.getJSON(req);
+}
+
+function showError(err) {
+    if (err = "submit") alert("Please enter a value for weight and calories");
 }
 
 function today() {
