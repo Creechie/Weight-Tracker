@@ -1,9 +1,21 @@
+:root {
+    --main-colour: #2C97AD;
+    --dark-blue: #007592;
+    --light-blue: #E5F5F9;
+    --off-white: #E7EAEB;
+
+}
+
+
 body {
     margin: 0px;
 }
 
 hr {
-    margin: 0px 30px;
+    margin: 0px 10px;
+    background-color: rgb(86, 117, 158);
+    border: 0px;
+    height: 1px;
 }
 
 #sidebar {
@@ -16,28 +28,24 @@ hr {
     top: 0;
     /* Stay at the top */
     left: 0;
-    background-color: grey;
+    background-color: var(--main-colour);
     overflow-x: hidden;
     /* Disable horizontal scroll */
     padding-top: 20px;
 }
 
 #page-content {
-
     margin-left: 260px;
-    /* Same as the width of the sidebar */
-    /* padding: 0px 10px; */
-    /* padding: 10px; */
 }
 
 #report-area {
     float: left;
-    background: rgb(201, 201, 201);
     height: 100%;
     width: 70%;
 }
 
 #info-area {
+    color: var(--dark-blue);
     float: right;
     padding: 1%;
     height: 100%;
@@ -48,7 +56,7 @@ hr {
     top: 0;
     /* Stay at the top */
     right: 0;
-    background-color: rgb(77, 77, 77);
+    background-color: var(--light-blue);
     overflow-x: hidden;
     /* Disable horizontal scroll */
     padding-top: 20px;
@@ -81,6 +89,9 @@ hr {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
 }
+.modal button {
+    float: right;
+}
 
 .modal-content {
     background-color: #fefefe;
@@ -99,13 +110,16 @@ hr {
 }
 
 @media screen and (max-width:1000px) {
+    hr {
+        display: none;
+    }
+
     #info-area {
         overflow: hidden;
         position: static;
         width: 100%;
         width: calc(100% - 20px);
         float: none;
-        
     }
 
     #report-area {
