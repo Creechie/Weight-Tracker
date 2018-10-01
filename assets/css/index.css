@@ -34,8 +34,7 @@ hr {
     float: left;
     background: rgb(201, 201, 201);
     height: 100%;
-    width: 68%;
-    padding: 1%;
+    width: 70%;
 }
 
 #info-area {
@@ -54,8 +53,14 @@ hr {
     /* Disable horizontal scroll */
     padding-top: 20px;
 }
+#info-area h1{
+    text-align: center;
+
+}
+
 .user-data {
     white-space: nowrap;
+    text-decoration: underline;
 }
 
 
@@ -98,36 +103,76 @@ hr {
         overflow: hidden;
         position: static;
         width: 100%;
+        width: calc(100% - 20px);
         float: none;
+        
     }
+
     #report-area {
         float: left;
         width: 100%;
+        width: calc(100% - 20px);
     }
+
     #sidebar {
         padding-top: 15px;
         width: 60px;
     }
 
-    #pageContent {
+    #page-content {
+        display: grid;
         margin-left: 60px;
-        /* Same as the width of the sidebar */
+        grid-template-rows: 265px auto;
+        padding: 0%;
     }
+    #info-area {
+        grid-row: 1 / 2;
+        display: grid;
+        grid-template-columns: auto auto;
+        overflow: hidden;
+        padding: 0 10px;
+        grid-gap: 5px;
+    }
+    
+    #report-area {
+        padding: 0 10px;
+        grid-row: 2 / 3;
+    }
+    .info-goal {
+        text-align: center;
+        grid-column: 1 / 3;
+    }
+    
+    
 }
 
 @media screen and (max-width: 600px) {
-
-    #info-area {
-        overflow: hidden;
-
-    }
-    #report-area {
-
-        width: 100%;
+    #sidebar {
+        left: -60px;
     }
 
+    #page-content {
+        margin-left: 0px;
+    }
+    #info-area h1{
+        font-size: 20px
+    }
+    #info-area h2{
+        font-size: 15px
+    }
+    #info-area h3{
+        font-size: 11px
+    }
+    
     .modal-content {
         border-radius: 10px/10px;
+        margin: auto;
+        margin-top: 60%;
+        top: 50%;
         width: 80%;
+    }
+
+    .mobile-centred {
+        text-align: center;
     }
 }
