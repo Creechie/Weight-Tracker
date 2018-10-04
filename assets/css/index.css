@@ -3,12 +3,11 @@
     --dark-blue: #007592;
     --light-blue: #E5F5F9;
     --off-white: #E7EAEB;
-
 }
-
 
 body {
     margin: 0px;
+    /* Default font size = 12pt = 16px */
 }
 
 hr {
@@ -21,7 +20,7 @@ hr {
 #sidebar {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
-    width: 260px;
+    width: 220px;
     position: fixed;
     z-index: 1;
     /* Stay on top */
@@ -29,9 +28,24 @@ hr {
     /* Stay at the top */
     left: 0;
     background-color: var(--main-colour);
+    color: #fff;
     overflow-x: hidden;
     /* Disable horizontal scroll */
-    padding-top: 20px;
+    padding: 20px;
+}
+
+#sidebar img {
+    /* User picture */
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 5px; 
+
+}
+
+.username {
+    font-size: 1.5em;
+    vertical-align: 80%;
+
 }
 
 #page-content {
@@ -61,7 +75,8 @@ hr {
     /* Disable horizontal scroll */
     padding-top: 20px;
 }
-#info-area h1{
+
+#info-area h1 {
     text-align: center;
 
 }
@@ -70,10 +85,6 @@ hr {
     white-space: nowrap;
     text-decoration: underline;
 }
-
-
-
-
 
 
 
@@ -89,6 +100,7 @@ hr {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 .modal button {
     float: right;
 }
@@ -139,6 +151,7 @@ hr {
         grid-template-rows: 265px auto;
         padding: 0%;
     }
+
     #info-area {
         grid-row: 1 / 2;
         display: grid;
@@ -147,17 +160,18 @@ hr {
         padding: 0 10px;
         grid-gap: 5px;
     }
-    
+
     #report-area {
         padding: 0 10px;
         grid-row: 2 / 3;
     }
+
     .info-goal {
         text-align: center;
         grid-column: 1 / 3;
     }
-    
-    
+
+
 }
 
 @media screen and (max-width: 600px) {
@@ -168,16 +182,19 @@ hr {
     #page-content {
         margin-left: 0px;
     }
-    #info-area h1{
+
+    #info-area h1 {
         font-size: 20px
     }
-    #info-area h2{
+
+    #info-area h2 {
         font-size: 15px
     }
-    #info-area h3{
+
+    #info-area h3 {
         font-size: 11px
     }
-    
+
     .modal-content {
         border-radius: 10px/10px;
         margin: auto;
