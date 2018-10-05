@@ -21,6 +21,8 @@ Made to replace, simplify, and expand bulky spreadsheets and pen-and-paper recor
   * Main page
   * Full data table page
 * .csv importing/exporting
+* Login page
+  * Cookies?
 * Rework colour scheme
 * Chart scaling
 * Chart labelling
