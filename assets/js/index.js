@@ -1,4 +1,7 @@
 $(function () {
+    setUser('Charlie Creech'); // To be replaced with a login page
+
+
     $('#new-entry').click(function (err) {
         err.preventDefault();
         $(".modal").fadeIn("fast");
@@ -15,7 +18,7 @@ $(function () {
 });
 
 function submit() {
-    var username = $(".username").text();
+    var username = $(".user-name").text();
     var weight = $(":input#weight").val();
     var kcal = $(":input#calories").val();
     var date = today();
@@ -23,21 +26,38 @@ function submit() {
     if (username && weight && kcal && date) {
         saveJSON(username, date, weight, kcal);
         return true;
-    }
-    else {
+    } else {
         showError("submit");
         return false;
     }
 }
 
 function saveJSON(user, date, weight, kcal) {
-    var req = '/' + user + '/add/' + date + '/' + weight + '/' + kcal;
-    $.getJSON(req);
+    var url = '/' + user + '/add/' + date + '/' + weight + '/' + kcal;
+    $.getJSON(url);
 }
 
 function showError(err) {
     if (err = "submit") alert("Please enter a value for weight and calories");
 }
+
+function setUser(name) {
+    var url = '/search/' + name;
+    var req = $.getJSON(url, function(res) {
+        console.log(res);
+        // Get user's details from response
+        var age = res.age; 
+        var height = res.height; 
+        var name = res.user; 
+
+        $(".user-age").text(age);
+        $(".user-height").text(height);
+        $(".user-name").text(name);
+        //user weight
+    });
+    
+}
+
 
 function today() {
     var today = new Date();
