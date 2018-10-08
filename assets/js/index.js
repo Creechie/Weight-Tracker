@@ -1,8 +1,7 @@
 $(function () {
     setUser('Charlie Creech'); // To be replaced with a login page
-
-    setStartingWeight("Charlie Creech");
-    setCurrentWeight("Charlie Creech");
+    calculateProgress('Charlie Creech');
+    setCurrentWeight('Charlie Creech');
 
     $('#new-entry').click(function (err) {
         err.preventDefault();
@@ -19,17 +18,29 @@ $(function () {
     });
 });
 
-function setStartingWeight(user) {
+// Starting weight - current weight
+function calculateProgress(user) {
+    var startWeight;
+    var currentWeight;
+
+    // Get user's diary
     var url = '/' + user + '/diary';
     $.getJSON(url, function (res) {
-        // response = user's diary
-        // loop through diary until a weight value is found
-        for (let i = 0; i < res.length; i++)
+        // Get starting weight
+        for (let i = 0; i < res.length; i++) {
             if (res[i].weight) {
-                $('#start-weight').text(res[i].weight);
-                return;
+                startWeight = res[i].weight;
             }
-        console.log('No initial weight found for \'' + user + '\'');
+        }
+        // Get current weight
+        for (let i = res.length - 1; i > 0; i--) {
+            if (res[i].weight) {
+                currentWeight = res[i].weight;                
+            }
+        }
+
+        var diff = Math.abs(startWeight - currentWeight);
+        $('.user-progress').text(diff);
     });
 }
 
@@ -38,24 +49,23 @@ function setCurrentWeight(user) {
     $.getJSON(url, function (res) {
         // response = user's diary
         // loop through diary until a weight value is found
-        for (let i = res.length-1; i > 0; i--)
+        for (let i = res.length - 1; i > 0; i--)
             if (res[i].weight) {
                 $('.current-weight').text(res[i].weight);
                 return;
             }
         console.log('No weight found for \'' + user + '\'');
-
     });
 }
 
 function setUser(name) {
     var url = '/search/' + name;
-    var req = $.getJSON(url, function(res) {
+    var req = $.getJSON(url, function (res) {
         console.log(res);
         // Get user's details from response
-        var age = res.age; 
-        var height = res.height; 
-        var name = res.user; 
+        var age = res.age;
+        var height = res.height;
+        var name = res.user;
         var sex = res.sex;
 
         $(".user-age").text(age);
@@ -64,7 +74,7 @@ function setUser(name) {
         $(".user-sex").text(sex);
         //user weight
     });
-    
+
 }
 
 function submit() {
