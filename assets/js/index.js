@@ -1,6 +1,8 @@
 $(function () {
     setUser('Charlie Creech'); // To be replaced with a login page
 
+    setStartingWeight("Charlie Creech");
+    setCurrentWeight("Charlie Creech");
 
     $('#new-entry').click(function (err) {
         err.preventDefault();
@@ -16,6 +18,54 @@ $(function () {
         $(".modal").fadeOut("fast");
     });
 });
+
+function setStartingWeight(user) {
+    var url = '/' + user + '/diary';
+    $.getJSON(url, function (res) {
+        // response = user's diary
+        // loop through diary until a weight value is found
+        for (let i = 0; i < res.length; i++)
+            if (res[i].weight) {
+                $('#start-weight').text(res[i].weight);
+                return;
+            }
+        console.log('No initial weight found for \'' + user + '\'');
+    });
+}
+
+function setCurrentWeight(user) {
+    var url = '/' + user + '/diary';
+    $.getJSON(url, function (res) {
+        // response = user's diary
+        // loop through diary until a weight value is found
+        for (let i = res.length-1; i > 0; i--)
+            if (res[i].weight) {
+                $('.current-weight').text(res[i].weight);
+                return;
+            }
+        console.log('No weight found for \'' + user + '\'');
+
+    });
+}
+
+function setUser(name) {
+    var url = '/search/' + name;
+    var req = $.getJSON(url, function(res) {
+        console.log(res);
+        // Get user's details from response
+        var age = res.age; 
+        var height = res.height; 
+        var name = res.user; 
+        var sex = res.sex;
+
+        $(".user-age").text(age);
+        $(".user-height").text(height);
+        $(".user-name").text(name);
+        $(".user-sex").text(sex);
+        //user weight
+    });
+    
+}
 
 function submit() {
     var username = $(".user-name").text();
@@ -41,32 +91,14 @@ function showError(err) {
     if (err = "submit") alert("Please enter a value for weight and calories");
 }
 
-function setUser(name) {
-    var url = '/search/' + name;
-    var req = $.getJSON(url, function(res) {
-        console.log(res);
-        // Get user's details from response
-        var age = res.age; 
-        var height = res.height; 
-        var name = res.user; 
-
-        $(".user-age").text(age);
-        $(".user-height").text(height);
-        $(".user-name").text(name);
-        //user weight
-    });
-    
-}
-
-
 function today() {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
     var yyyy = today.getFullYear();
 
-    if (dd < 10) dd = '0' + dd
-    if (mm < 10) mm = '0' + mm
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
     today = dd + '-' + mm + '-' + yyyy;
     return today;
 }
