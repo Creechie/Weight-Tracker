@@ -44,6 +44,7 @@ function searchUser(req, res) {
         reply = {
             status: "Found",
             user: name,
+            sex: userObject[name].sex,
             age: userObject[name].age,
             height: userObject[name].height
         }

@@ -2,6 +2,7 @@
   "Charlie Creech": {
     "age": 22,
     "height": 174,
+    "sex": "Male",
     "diary": [
       {
         "date": "06-08-2017",
