@@ -1,7 +1,5 @@
 $(function () {
-    setUser('Charlie Creech'); // To be replaced with a login page
-    calculateProgress('Charlie Creech');
-    setCurrentWeight('Charlie Creech');
+    initialise();
 
     $('#new-entry').click(function (err) {
         err.preventDefault();
@@ -17,6 +15,12 @@ $(function () {
         $(".modal").fadeOut("fast");
     });
 });
+
+function initialise() {
+    setUser('Charlie Creech'); // To be replaced with a login page
+    calculateProgress('Charlie Creech');
+    setCurrentWeight('Charlie Creech');
+}
 
 // Starting weight - current weight
 function calculateProgress(user) {
@@ -39,7 +43,7 @@ function calculateProgress(user) {
             }
         }
 
-        var diff = Math.abs(startWeight - currentWeight);
+        var diff = round1DP(Math.abs(startWeight - currentWeight));
         $('.user-progress').text(diff);
     });
 }
@@ -72,7 +76,6 @@ function setUser(name) {
         $(".user-height").text(height);
         $(".user-name").text(name);
         $(".user-sex").text(sex);
-        //user weight
     });
 
 }
@@ -85,6 +88,7 @@ function submit() {
 
     if (username && weight && kcal && date) {
         saveJSON(username, date, weight, kcal);
+        initialise();
         return true;
     } else {
         showError("submit");
@@ -111,4 +115,8 @@ function today() {
     if (mm < 10) mm = '0' + mm;
     today = dd + '-' + mm + '-' + yyyy;
     return today;
+}
+
+function round1DP(x) {
+    return Number.parseFloat(x).toFixed(1);
 }
