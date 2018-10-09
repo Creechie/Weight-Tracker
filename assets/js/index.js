@@ -39,7 +39,7 @@ function calculateProgress(user) {
         // Get current weight
         for (let i = res.length - 1; i > 0; i--) {
             if (res[i].weight) {
-                currentWeight = res[i].weight;                
+                currentWeight = res[i].weight;
             }
         }
 
@@ -55,7 +55,8 @@ function setCurrentWeight(user) {
         // loop through diary until a weight value is found
         for (let i = res.length - 1; i > 0; i--)
             if (res[i].weight) {
-                $('.current-weight').text(res[i].weight);
+                var currentWeight = round1DP(res[i].weight);
+                $('.current-weight').text(currentWeight);
                 return;
             }
         console.log('No weight found for \'' + user + '\'');
