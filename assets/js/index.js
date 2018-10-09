@@ -103,7 +103,7 @@ function saveJSON(user, date, weight, kcal) {
 }
 
 function showError(err) {
-    if (err = "submit") alert("Please enter a value for weight and calories");
+    if (err == "submit") alert("Please enter a value for weight and calories");
 }
 
 function today() {
