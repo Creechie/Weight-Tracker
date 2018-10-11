@@ -72,7 +72,6 @@ function setUser(name) {
         $(".user-height").text(height);
         $(".user-name").text(name);
         $(".user-sex").text(sex);
-        //user weight
     });
 
 }
