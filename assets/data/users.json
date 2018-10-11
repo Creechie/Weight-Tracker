@@ -3,6 +3,7 @@
     "age": 22,
     "height": 174,
     "sex": "Male",
+    "goal": 68,
     "diary": [
       {
         "date": "06-08-2017",

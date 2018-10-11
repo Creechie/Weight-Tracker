@@ -46,7 +46,9 @@ function searchUser(req, res) {
             user: name,
             sex: userObject[name].sex,
             age: userObject[name].age,
-            height: userObject[name].height
+            height: userObject[name].height,
+            goal: userObject[name].goal,
+            diary: userObject[name].diary
         }
     } else {
         console.log('User was not found');
