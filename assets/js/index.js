@@ -22,29 +22,39 @@ function initialise() {
     setCurrentWeight('Charlie Creech');
 }
 
+
+
 // Starting weight - current weight
 function calculateProgress(user) {
     var startWeight;
     var currentWeight;
 
     // Get user's diary
-    var url = '/' + user + '/diary';
+    var url = '/search/' + user + '/';
     $.getJSON(url, function (res) {
+        var diary = res.diary;
+
         // Get starting weight
-        for (let i = 0; i < res.length; i++) {
-            if (res[i].weight) {
-                startWeight = res[i].weight;
+        for (let i = 0; i < diary.length; i++) {
+            if (diary[i].weight) {
+                currentWeight = diary[i].weight;
             }
         }
         // Get current weight
-        for (let i = res.length - 1; i > 0; i--) {
-            if (res[i].weight) {
-                currentWeight = res[i].weight;
+        for (let i = diary.length - 1; i > 0; i--) {
+            if (diary[i].weight) {
+                startWeight = diary[i].weight;
             }
         }
 
         var diff = round1DP(Math.abs(startWeight - currentWeight));
         $('.user-progress').text(diff);
+
+        // Calculate remaining weight until goal
+        var goal = res.goal;
+        var remaining = round1DP(currentWeight - goal); 
+        $('.user-remaining').text(remaining);
+
     });
 }
 
@@ -66,7 +76,6 @@ function setCurrentWeight(user) {
 function setUser(name) {
     var url = '/search/' + name;
     var req = $.getJSON(url, function (res) {
-        console.log(res);
         // Get user's details from response
         var age = res.age;
         var height = res.height;
