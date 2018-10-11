@@ -1,7 +1,5 @@
 $(function () {
-    setUser('Charlie Creech'); // To be replaced with a login page
-    calculateProgress('Charlie Creech');
-    setCurrentWeight('Charlie Creech');
+    initialise();
 
     $('#new-entry').click(function (err) {
         err.preventDefault();
@@ -17,6 +15,12 @@ $(function () {
         $(".modal").fadeOut("fast");
     });
 });
+
+function initialise() {
+    setUser('Charlie Creech'); // To be replaced with a login page
+    calculateProgress('Charlie Creech');
+    setCurrentWeight('Charlie Creech');
+}
 
 // Starting weight - current weight
 function calculateProgress(user) {
@@ -35,11 +39,11 @@ function calculateProgress(user) {
         // Get current weight
         for (let i = res.length - 1; i > 0; i--) {
             if (res[i].weight) {
-                currentWeight = res[i].weight;                
+                currentWeight = res[i].weight;
             }
         }
 
-        var diff = Math.abs(startWeight - currentWeight);
+        var diff = round1DP(Math.abs(startWeight - currentWeight));
         $('.user-progress').text(diff);
     });
 }
@@ -51,7 +55,8 @@ function setCurrentWeight(user) {
         // loop through diary until a weight value is found
         for (let i = res.length - 1; i > 0; i--)
             if (res[i].weight) {
-                $('.current-weight').text(res[i].weight);
+                var currentWeight = round1DP(res[i].weight);
+                $('.current-weight').text(currentWeight);
                 return;
             }
         console.log('No weight found for \'' + user + '\'');
@@ -84,6 +89,7 @@ function submit() {
 
     if (username && weight && kcal && date) {
         saveJSON(username, date, weight, kcal);
+        initialise();
         return true;
     } else {
         showError("submit");
@@ -97,7 +103,7 @@ function saveJSON(user, date, weight, kcal) {
 }
 
 function showError(err) {
-    if (err = "submit") alert("Please enter a value for weight and calories");
+    if (err == "submit") alert("Please enter a value for weight and calories");
 }
 
 function today() {
@@ -110,4 +116,8 @@ function today() {
     if (mm < 10) mm = '0' + mm;
     today = dd + '-' + mm + '-' + yyyy;
     return today;
+}
+
+function round1DP(x) {
+    return Number.parseFloat(x).toFixed(1);
 }

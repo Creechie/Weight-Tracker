@@ -77,12 +77,11 @@ hr {
 
 #info-area h1 {
     text-align: center;
-
 }
 
 .user-data {
     white-space: nowrap;
-    text-decoration: underline;
+    border-bottom: 2px solid ;
 }
 
 
