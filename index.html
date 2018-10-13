@@ -28,44 +28,97 @@
                 <img src="assets/img/img_avatar.png" alt="Avatar">
                 <span class="user-name">???</span>
             </div>
-                <p><span class="user-age">???</span> years old</p>
-                <p><span class="user-sex">???</span></p>
-                <p>Height: <span class="user-height">???</span> cm</p>
-                <p>Weight: <span class="user-weight current-weight">???</span> kg</p>
-                <p><span class="user-progress">???</span> kg lost, <span class="user-remaining">???</span> kg to go!</p>
+            <p><span class="user-age">???</span> years old</p>
+            <p><span class="user-sex">???</span></p>
+            <p>Height: <span class="user-height">???</span> cm</p>
+            <p>Weight: <span class="user-weight current-weight">???</span> kg</p>
+            <p><span class="user-progress">???</span> kg lost, <span class="user-remaining">???</span> kg to go!</p>
         </div>
     </div>
 
     <div id="page-content">
         <div id="report-area">
             <button id="new-entry">Enter today's data</button>
-            
+
+            <table>
+                <!-- table headers -->
+                <tr>
+                    <th>Week</th>
+                    <th>Stats</th>
+                    <th>Mon.</th>
+                    <th>Tue.</th>
+                    <th>Wed.</th>
+                    <th>Thu.</th>
+                    <th>Fri.</th>
+                    <th>Sat.</th>
+                    <th>Sun.</th>
+                    <th>Avg.</th>
+                    <th>∆</th>
+                    <th>TDEE</th>
+                </tr>
+
+                <tr>
+                    <td class="table-week">3-Sep-18</td>
+                    <td class="table-stats">
+                        <ul>
+                            <li>Weight</li>
+                            <li>Cal.</li>
+                        </ul>
+                    </td>
+                    <td class="table-data">
+                        <ul>
+                            <li class="data-weight"></li>
+                            <li class="data-cal"></li>
+                        </ul>
+                    </td>
+                    <td class="table-data"><ul><li class="data-weight"></li><li class="data-cal"></li></ul></td>
+                    <td class="table-data"><ul><li class="data-weight"></li><li class="data-cal"></li></ul></td>
+                    <td class="table-data"><ul><li class="data-weight"></li><li class="data-cal"></li></ul></td>
+                    <td class="table-data"><ul><li class="data-weight"></li><li class="data-cal"></li></ul></td>
+                    <td class="table-data"><ul><li class="data-weight"></li><li class="data-cal"></li></ul></td>
+                    <td class="table-data"><ul><li class="data-weight"></li><li class="data-cal"></li></ul></td>
+                    <td class="table-avg">
+                        <ul>
+                            <li>71.2</li>
+                            <li>1631</li>
+                        </ul>
+                    </td>
+                    <td class="table-delta">-0.86</td>
+                    <td class="table-tdee">2575</td>
+
+                </tr>
+            </table>
+
         </div>
         <div id="info-area">
             <div>
                 <h3>Your current weight is:</h3>
                 <h1><span class="user-data current-weight">???</span> Kg</h1>
-            </div><hr>
+            </div>
+            <hr>
             <div>
                 <h3>You've lost:</h3>
                 <h1><span class="user-data user-progress">???</span> Kg</h1>
-            </div><hr>
+            </div>
+            <hr>
             <div>
                 <h3>Your current TDEE is:</h3>
                 <h1><span class="user-data">???</span> kcal/day</h1>
-            </div><hr>
+            </div>
+            <hr>
             <div>
                 <h3>To reach your goal weight by <span class="user-data mobile-centered">???</span><br>
                     You will need to eat
                     <h1><span class="user-data">???</span> kcal/day</h1>
                 </h3>
-            </div><hr>
+            </div>
+            <hr>
             <div class="info-goal">
                 <h2><span class="user-data">???</span> weeks until you reach your goal weight</h2>
             </div>
         </div>
-        
-        </div>
+
+    </div>
 
 
     <!-- jQuery -->

@@ -17,6 +17,25 @@ hr {
     height: 1px;
 }
 
+table {
+    margin: 5px;
+    background-color: var(--light-blue);
+    text-align: center;
+}
+
+th {
+    background-color: var(--main-colour);
+    padding: 2px 16px;;
+}
+
+
+table ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
 #sidebar {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
