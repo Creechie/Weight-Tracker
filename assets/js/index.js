@@ -8,21 +8,41 @@ $(function () {
     $('.modal-submit').click(function (err) {
         err.preventDefault();
         if (submit())
-            $(".modal").fadeOut("fast");
+            $('.modal').fadeOut("fast");
     });
     $('.modal-cancel').click(function (err) {
         err.preventDefault();
         $(".modal").fadeOut("fast");
     });
+
+    $('#test-new-row').click(function (err) {
+        err.preventDefault();
+        newRow();
+    });
 });
 
 function initialise() {
-    setUser('Charlie Creech'); // To be replaced with a login page
-    calculateProgress('Charlie Creech');
-    setCurrentWeight('Charlie Creech');
+    setUser("Charlie Creech"); // To be replaced with a login page
+    calculateProgress("Charlie Creech");
+    setCurrentWeight("Charlie Creech");
 }
 
+function newRow() {
+    var table = document.getElementById('tdee-table');
+    var newRow = table.insertRow(-1);
 
+    var rowCount = table.rows.length;
+
+    // Load html for the new row from file
+    var rowHTML = $.ajax({
+        url: "assets/html/new-row.html",
+        success: function (result) {
+            newRow = $('#tdee-table tr:last');
+            newRow.html(result);
+            $('#tdee-table tr:last-child td:eq(0)').html(weekStart());
+        }
+    });
+}
 
 // Starting weight - current weight
 function calculateProgress(user) {
@@ -52,7 +72,7 @@ function calculateProgress(user) {
 
         // Calculate remaining weight until goal
         var goal = res.goal;
-        var remaining = round1DP(currentWeight - goal); 
+        var remaining = round1DP(currentWeight - goal);
         $('.user-remaining').text(remaining);
 
     });
@@ -117,14 +137,49 @@ function showError(err) {
 
 function today() {
     var today = new Date();
+
     var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
+    var mm = today.getMonth() + 1; //January is 0
     var yyyy = today.getFullYear();
 
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
+
     today = dd + '-' + mm + '-' + yyyy;
     return today;
+}
+
+function weekStart() {
+    var date = new Date;
+
+    var dd = date.getDate() - date.getDay() + 1;
+    var mmm = date.getMonth();
+    var yy = date.getFullYear();
+
+    if (dd < 10) dd = '0' + dd;
+    mmm = getShortMonth(mmm);
+    yy = yy.toString().substring(2, 4);
+
+    date = dd + '-' + mmm + '-' + yy;
+    return date;
+}
+
+function getShortMonth(month) {
+    switch (month) {
+        case 0: return "Jan"
+        case 1: return "Feb"
+        case 2: return "Mar"
+        case 3: return "Apr"
+        case 4: return "May"
+        case 5: return "Jun"
+        case 6: return "Jul"
+        case 7: return "Aug"
+        case 8: return "Sep"
+        case 9: return "Oct"
+        case 10: return "Nov"
+        case 11: return "Dec"
+        default: return "???"
+    }
 }
 
 function round1DP(x) {
