@@ -36,25 +36,50 @@ function loadDiary(user) {
     var url = '/search/' + user + '/';
     $.getJSON(url, function (res) {
         var diary = res.diary;
-        console.log(diary);
+        var weight, calories;
+        var cellCount = 0;
+        for (let i = 0; i < res.diary.length / 7; i++) {
+            newRow();
+            var currentRowHTMLBuffer = ''; // + <ul>
+            for (var weekDay = 0; weekDay < 7; weekDay++) {
+                if (cellCount < res.diary.length) {
+                    weight = res.diary[cellCount].weight;
+
+                    currentRowHTMLBuffer += '<td class="table-data">'
+                    currentRowHTMLBuffer += weight;
+                    currentRowHTMLBuffer += '</td>';
+
+                    console.log(currentRowHTMLBuffer);
+                    $('#tdee-table tr:last-child').html(currentRowHTMLBuffer);
+
+                    // weight = res.diary[cellCount].weight;
+                    // $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html(weight);
+                    cellCount++;
+                }
+            }
+
+        }
     });
 }
 
 function newRow() {
     var table = document.getElementById('tdee-table');
     var newRow = table.insertRow(-1);
-
     var rowCount = table.rows.length;
 
-    // Load html for the new row from file
-    var rowHTML = $.ajax({
-        url: "assets/html/new-row.html",
-        success: function (result) {
-            newRow = $('#tdee-table tr:last');
-            newRow.html(result);
-            $('#tdee-table tr:last-child td:eq(0)').html(weekStart());
-        }
-    });
+    var rowHTML =
+        '<td class="table-week"></td>' +
+        '<td class="table-stats">' +
+        '<ul>' +
+        '<li>Weight</li>' +
+        '<li>Cal.</li>' +
+        '</ul>' +
+        '</td>'
+
+    newRow = $('#tdee-table tr:last');
+    newRow.html(rowHTML);
+    $('#tdee-table tr:last-child td:eq(0)').html(weekStart());
+
 }
 
 // Starting weight - current weight
@@ -179,19 +204,32 @@ function weekStart() {
 
 function getShortMonth(month) {
     switch (month) {
-        case 0: return "Jan"
-        case 1: return "Feb"
-        case 2: return "Mar"
-        case 3: return "Apr"
-        case 4: return "May"
-        case 5: return "Jun"
-        case 6: return "Jul"
-        case 7: return "Aug"
-        case 8: return "Sep"
-        case 9: return "Oct"
-        case 10: return "Nov"
-        case 11: return "Dec"
-        default: return "???"
+        case 0:
+            return "Jan"
+        case 1:
+            return "Feb"
+        case 2:
+            return "Mar"
+        case 3:
+            return "Apr"
+        case 4:
+            return "May"
+        case 5:
+            return "Jun"
+        case 6:
+            return "Jul"
+        case 7:
+            return "Aug"
+        case 8:
+            return "Sep"
+        case 9:
+            return "Oct"
+        case 10:
+            return "Nov"
+        case 11:
+            return "Dec"
+        default:
+            return "???"
     }
 }
 
