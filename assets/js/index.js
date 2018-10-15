@@ -19,12 +19,25 @@ $(function () {
         err.preventDefault();
         newRow();
     });
+
+    $('#test-load').click(function (err) {
+        err.preventDefault();
+        loadDiary("Charlie Creech");
+    });
 });
 
 function initialise() {
     setUser("Charlie Creech"); // To be replaced with a login page
     calculateProgress("Charlie Creech");
     setCurrentWeight("Charlie Creech");
+}
+
+function loadDiary(user) {
+    var url = '/search/' + user + '/';
+    $.getJSON(url, function (res) {
+        var diary = res.diary;
+        console.log(diary);
+    });
 }
 
 function newRow() {
@@ -158,7 +171,7 @@ function weekStart() {
 
     if (dd < 10) dd = '0' + dd;
     mmm = getShortMonth(mmm);
-    yy = yy.toString().substring(2, 4);
+    yy = yy.toString().slice(-2);
 
     date = dd + '-' + mmm + '-' + yy;
     return date;
