@@ -35,6 +35,10 @@ table ul {
     padding: 0;
 }
 
+.table-data {
+    background: #ddd;
+}
+
 
 #sidebar {
     height: 100%;

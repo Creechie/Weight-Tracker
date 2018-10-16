@@ -37,23 +37,22 @@ function loadDiary(user) {
     $.getJSON(url, function (res) {
         var diary = res.diary;
         var weight, calories;
+        var cellHTML;
         var cellCount = 0;
         for (let i = 0; i < res.diary.length / 7; i++) {
             newRow();
-            var currentRowHTMLBuffer = ''; // + <ul>
             for (var weekDay = 0; weekDay < 7; weekDay++) {
                 if (cellCount < res.diary.length) {
                     weight = res.diary[cellCount].weight;
+                    calories = res.diary[cellCount].calories;
 
-                    currentRowHTMLBuffer += '<td class="table-data">'
-                    currentRowHTMLBuffer += weight;
-                    currentRowHTMLBuffer += '</td>';
+                    cellHTML = '<ul>';
+                    cellHTML += '   <li class="data-weight">' + weight + '</li>';
+                    cellHTML += '   <li class="data-cal">' + calories + '</li>';
+                    cellHTML += '</ul>';
 
-                    console.log(currentRowHTMLBuffer);
-                    $('#tdee-table tr:last-child').html(currentRowHTMLBuffer);
+                    $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html(cellHTML);
 
-                    // weight = res.diary[cellCount].weight;
-                    // $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html(weight);
                     cellCount++;
                 }
             }
@@ -70,11 +69,16 @@ function newRow() {
     var rowHTML =
         '<td class="table-week"></td>' +
         '<td class="table-stats">' +
-        '<ul>' +
-        '<li>Weight</li>' +
-        '<li>Cal.</li>' +
-        '</ul>' +
-        '</td>'
+        '   <ul>' +
+        '       <li>Weight</li>' +
+        '       <li>Cal.</li>' +
+        '   </ul>' +
+        '</td>';
+
+    // Empty cells for Mon - Sun
+    for (var weekDay = 0; weekDay < 7; weekDay++) {
+        rowHTML += '<td class="table-data"></td>'
+    }
 
     newRow = $('#tdee-table tr:last');
     newRow.html(rowHTML);
