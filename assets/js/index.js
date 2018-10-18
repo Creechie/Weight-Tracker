@@ -36,29 +36,42 @@ function loadDiary(user) {
     var url = '/search/' + user + '/';
     $.getJSON(url, function (res) {
         var diary = res.diary;
-        var weight, calories;
+        var weight, calories, date;
         var cellHTML;
         var cellCount = 0;
-        for (let i = 0; i < res.diary.length / 7; i++) {
+
+        for (let i = 0; i < diary.length / 7; i++) {
             newRow();
+            date = diary[cellCount].date;
+            populateDate(date);
             for (var weekDay = 0; weekDay < 7; weekDay++) {
-                if (cellCount < res.diary.length) {
-                    weight = res.diary[cellCount].weight;
-                    calories = res.diary[cellCount].calories;
+                if (cellCount < diary.length) {
+                    console.log(parseDate(date).getDay() || 7 - 1);
+                    if (parseDate(date).getDay() || 7 - 1 == weekDay) {
 
-                    cellHTML = '<ul>';
-                    cellHTML += '   <li class="data-weight">' + weight + '</li>';
-                    cellHTML += '   <li class="data-cal">' + calories + '</li>';
-                    cellHTML += '</ul>';
+                        weight = diary[cellCount].weight;
+                        calories = diary[cellCount].calories;
 
-                    $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html(cellHTML);
+                        cellHTML  = '<ul>';
+                        cellHTML += '   <li class="data-weight">' + weight + '</li>';
+                        cellHTML += '   <li class="data-cal">' + calories + '</li>';
+                        cellHTML += '</ul>';
 
-                    cellCount++;
+                        $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html(cellHTML);
+
+                        cellCount++;
+                    } else {
+                        $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html("no data");
+                    }
                 }
             }
-
         }
     });
+}
+
+function parseDate(dateString) {
+    var splitDate = dateString.split("-");
+    return new Date(splitDate[2], splitDate[1] - 1, splitDate[0]);
 }
 
 function newRow() {
@@ -82,8 +95,11 @@ function newRow() {
 
     newRow = $('#tdee-table tr:last');
     newRow.html(rowHTML);
-    $('#tdee-table tr:last-child td:eq(0)').html(weekStart());
+}
 
+function populateDate(date) {
+    var monday = weekStart(date);
+    $('#tdee-table tr:last-child td:eq(0)').html(monday);
 }
 
 // Starting weight - current weight
@@ -191,14 +207,20 @@ function today() {
     return today;
 }
 
-function weekStart() {
-    var date = new Date;
+function weekStart(date) {
+    var date = parseDate(date);
 
-    var dd = date.getDate() - date.getDay() + 1;
+    // Set date to first day of the week
+    var day = date.getDay();
+    var diff = date.getDate() - day + (day == 0 ? -6 : 1); // Adjust when Sunday (Sunday == 0)
+    date.setDate(diff);
+
+    var dd = date.getDate();
     var mmm = date.getMonth();
     var yy = date.getFullYear();
 
-    if (dd < 10) dd = '0' + dd;
+    // Format date
+    dd = (dd < 10 ? '0' + dd : dd)
     mmm = getShortMonth(mmm);
     yy = yy.toString().slice(-2);
 
