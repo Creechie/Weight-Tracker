@@ -38,38 +38,50 @@ function loadDiary(user) {
         var diary = res.diary;
         var weight, calories, date;
         var cellHTML;
-        var cellCount = 0;
+        var entryIndex = 0;
 
-        for (let i = 0; i < diary.length / 7; i++) {
+        var firstDate = new Date(strToDate(diary[entryIndex].date));
+        var startOfWeek = new Date(weekStart(firstDate));
+
+        // Loop through diary
+        var endOfDiary = false;
+        while (!endOfDiary) {
             newRow();
-            date = diary[cellCount].date;
-            populateDate(date);
-            for (var weekDay = 0; weekDay < 7; weekDay++) {
-                if (cellCount < diary.length) {
-                    console.log(parseDate(date).getDay() || 7 - 1);
-                    if (parseDate(date).getDay() || 7 - 1 == weekDay) {
+            populateDate(startOfWeek);
 
-                        weight = diary[cellCount].weight;
-                        calories = diary[cellCount].calories;
+            for (var d = 0; d < 7; d++) {
+                if (entryIndex < diary.length) {
+                    date = new Date(strToDate(diary[entryIndex].date))
 
-                        cellHTML  = '<ul>';
+                    var weekDay = startOfWeek.addDays(d);
+                    if (date.getTime() == weekDay.getTime()) {
+                        weight = diary[entryIndex].weight;
+                        calories = diary[entryIndex].calories;
+
+                        cellHTML = '<ul>';
                         cellHTML += '   <li class="data-weight">' + weight + '</li>';
                         cellHTML += '   <li class="data-cal">' + calories + '</li>';
                         cellHTML += '</ul>';
 
-                        $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html(cellHTML);
-
-                        cellCount++;
-                    } else {
-                        $('#tdee-table tr:last-child td:eq(' + (weekDay + 2) + ')').html("no data");
+                        $('#tdee-table tr:last-child td:eq(' + (d + 2) + ')').html(cellHTML);
+                        entryIndex++;
                     }
+                } else {
+                    endOfDiary = true;
                 }
             }
+            startOfWeek = new Date(startOfWeek.addDays(7));
         }
     });
 }
 
-function parseDate(dateString) {
+Date.prototype.addDays = function (days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
+
+function strToDate(dateString) {
     var splitDate = dateString.split("-");
     return new Date(splitDate[2], splitDate[1] - 1, splitDate[0]);
 }
@@ -89,7 +101,7 @@ function newRow() {
         '</td>';
 
     // Empty cells for Mon - Sun
-    for (var weekDay = 0; weekDay < 7; weekDay++) {
+    for (var day = 0; day < 7; day++) {
         rowHTML += '<td class="table-data"></td>'
     }
 
@@ -98,7 +110,7 @@ function newRow() {
 }
 
 function populateDate(date) {
-    var monday = weekStart(date);
+    var monday = dateToStr(date);
     $('#tdee-table tr:last-child td:eq(0)').html(monday);
 }
 
@@ -147,7 +159,7 @@ function setCurrentWeight(user) {
                 $('.current-weight').text(currentWeight);
                 return;
             }
-        console.log('No weight found for \'' + user + '\'');
+        alert('No weight found for \'' + user + '\'');
     });
 }
 
@@ -172,7 +184,7 @@ function submit() {
     var username = $(".user-name").text();
     var weight = $(":input#weight").val();
     var kcal = $(":input#calories").val();
-    var date = today();
+    var date = dateToStr(today());
 
     if (username && weight && kcal && date) {
         saveJSON(username, date, weight, kcal);
@@ -193,38 +205,27 @@ function showError(err) {
     if (err == "submit") alert("Please enter a value for weight and calories");
 }
 
-function today() {
-    var today = new Date();
-
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0
-    var yyyy = today.getFullYear();
+function dateToStr(date) {
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1; //January is 0
+    var yyyy = date.getFullYear();
 
     if (dd < 10) dd = '0' + dd;
     if (mm < 10) mm = '0' + mm;
 
-    today = dd + '-' + mm + '-' + yyyy;
-    return today;
+    return dd + '-' + mm + '-' + yyyy;
+}
+
+function today() {
+    return new Date();
 }
 
 function weekStart(date) {
-    var date = parseDate(date);
-
     // Set date to first day of the week
     var day = date.getDay();
     var diff = date.getDate() - day + (day == 0 ? -6 : 1); // Adjust when Sunday (Sunday == 0)
     date.setDate(diff);
 
-    var dd = date.getDate();
-    var mmm = date.getMonth();
-    var yy = date.getFullYear();
-
-    // Format date
-    dd = (dd < 10 ? '0' + dd : dd)
-    mmm = getShortMonth(mmm);
-    yy = yy.toString().slice(-2);
-
-    date = dd + '-' + mmm + '-' + yy;
     return date;
 }
 
