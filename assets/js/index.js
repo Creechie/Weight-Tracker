@@ -22,7 +22,7 @@ $(function () {
 
     $('#test-load').click(function (err) {
         err.preventDefault();
-        loadDiary("Charlie Creech");
+        populateTable("Charlie Creech");
     });
 });
 
@@ -32,11 +32,12 @@ function initialise() {
     setCurrentWeight("Charlie Creech");
 }
 
-function loadDiary(user) {
+function populateTable(user) {
     var url = '/search/' + user + '/';
     $.getJSON(url, function (res) {
         var diary = res.diary;
-        var weight, calories, date;
+        var weight, calories;
+        var date;
         var cellHTML;
         var entryIndex = 0;
 
@@ -49,18 +50,22 @@ function loadDiary(user) {
             newRow();
             populateDate(startOfWeek);
 
+            weight = [null, null, null, null, null, null, null];
+            calories = [null, null, null, null, null, null, null];
+
+            // Populate Mon - Sun
             for (var d = 0; d < 7; d++) {
                 if (entryIndex < diary.length) {
                     date = new Date(strToDate(diary[entryIndex].date))
 
                     var weekDay = startOfWeek.addDays(d);
                     if (date.getTime() == weekDay.getTime()) {
-                        weight = diary[entryIndex].weight;
-                        calories = diary[entryIndex].calories;
+                        weight[d] = diary[entryIndex].weight;
+                        calories[d] = diary[entryIndex].calories;
 
                         cellHTML = '<ul>';
-                        cellHTML += '   <li class="data-weight">' + weight + '</li>';
-                        cellHTML += '   <li class="data-cal">' + calories + '</li>';
+                        cellHTML += '   <li class="data-weight">' + weight[d] + '</li>';
+                        cellHTML += '   <li class="data-cal">' + calories[d] + '</li>';
                         cellHTML += '</ul>';
 
                         $('#tdee-table tr:last-child td:eq(' + (d + 2) + ')').html(cellHTML);
@@ -70,9 +75,32 @@ function loadDiary(user) {
                     endOfDiary = true;
                 }
             }
+
+            // Populate row averages
+            var weightAvg = (average(weight) ? round1DP(average(weight)) : '');
+            var calorieAvg = (average(calories) ? parseInt(average(calories)) : '');
+            cellHTML = '<ul>';
+            cellHTML += '   <li>' + weightAvg + '</li>';
+            cellHTML += '   <li>' + calorieAvg + '</li>';
+            cellHTML += '</ul>';
+            $('#tdee-table tr:last-child .table-avg').html(cellHTML);
+
+            // calculateDelta();
+            // calculateTDEE();
+
             startOfWeek = new Date(startOfWeek.addDays(7));
         }
     });
+}
+
+function average(values) {
+    var sum = 0;
+    var count = values.length;
+
+    for (var i = 0; i < values.length; i++)
+        if (parseFloat(values[i])) sum += parseFloat(values[i]);
+        else count -= 1;
+    if (count > 0) return sum / count;
 }
 
 Date.prototype.addDays = function (days) {
@@ -101,9 +129,11 @@ function newRow() {
         '</td>';
 
     // Empty cells for Mon - Sun
-    for (var day = 0; day < 7; day++) {
-        rowHTML += '<td class="table-data"></td>'
-    }
+    for (var day = 0; day < 7; day++) rowHTML += '<td class="table-data"></td>'
+    // Empty cells for Average, delta, and TDEE
+    rowHTML += '<td class="table-avg"></td>'
+    rowHTML += '<td class="table-delta"></td>'
+    rowHTML += '<td class="table-tdee"></td>'
 
     newRow = $('#tdee-table tr:last');
     newRow.html(rowHTML);
