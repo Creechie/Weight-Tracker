@@ -87,6 +87,7 @@ function populateTable(user) {
 
             // calculateDelta();
             // calculateTDEE();
+            
 
             startOfWeek = new Date(startOfWeek.addDays(7));
         }
