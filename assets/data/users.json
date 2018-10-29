@@ -6,11 +6,6 @@
     "goal": 68,
     "diary": [
       {
-        "date": "06-08-2017",
-        "weight": null,
-        "calories": null
-      },
-      {
         "date": "07-08-2017",
         "weight": 78.8,
         "calories": 841
@@ -589,6 +584,11 @@
         "date": "21-10-2018",
         "weight": 69.7,
         "calories": 1700
+      },
+      {
+        "date": "29-10-2018",
+        "weight": 69.8,
+        "calories": 1600
       }
     ]
   }

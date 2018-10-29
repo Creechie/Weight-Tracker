@@ -38,6 +38,7 @@ function populateTable(user) {
         var diary = res.diary;
         var weight, calories;
         var date;
+        var prevWeight = []; // Last week's weights
         var cellHTML;
         var entryIndex = 0;
 
@@ -49,6 +50,18 @@ function populateTable(user) {
         while (!endOfDiary) {
             newRow();
             populateDate(startOfWeek);
+
+            if (entryIndex >= 7)
+                prevWeight = weight;
+            else {
+                // Use starting weight
+                for (let i = 0; i < diary.length - 1; i++) {
+                    if (diary[i].weight) {
+                        prevWeight = diary[i].weight;
+                        break;
+                    }
+                }
+            }
 
             weight = [];
             calories = [];
@@ -76,14 +89,20 @@ function populateTable(user) {
                 }
             }
 
-            // Populate row averages
-            var weightAvg = (average(weight) ? round1DP(average(weight)) : '');
-            var calorieAvg = (average(calories) ? parseInt(average(calories)) : '');
+            // Populate weekly averages
+            var weightAvg = (average(weight) ? average(weight) : '');
+            var calorieAvg = (average(calories) ? average(calories) : '');
             cellHTML = '<ul>';
-            cellHTML += '   <li>' + weightAvg + '</li>';
-            cellHTML += '   <li>' + calorieAvg + '</li>';
+            cellHTML += '   <li>' + round1DP(weightAvg) + '</li>';
+            cellHTML += '   <li>' + parseInt(calorieAvg) + '</li>';
             cellHTML += '</ul>';
             $('#tdee-table tr:last-child .table-avg').html(cellHTML);
+
+            // Populate weekly delta
+            var prevWeightAvg = average(prevWeight);
+            var delta = weightAvg - prevWeightAvg;
+
+            $('#tdee-table tr:last-child .table-delta').html(round2DP(delta));
 
             // calculateDelta();
             // calculateTDEE();
@@ -97,10 +116,15 @@ function average(values) {
     var sum = 0;
     var count = values.length;
 
-    for (var i = 0; i < values.length; i++)
-        if (parseFloat(values[i])) sum += parseFloat(values[i]);
-        else count -= 1;
-    if (count > 0) return sum / count;
+    if (count) { // Is values an array?
+        for (var i = 0; i < values.length; i++)
+            if (parseFloat(values[i])) sum += parseFloat(values[i]);
+            else count -= 1;
+        if (count > 0) return sum / count;
+    } else {
+        // If values is not an array
+        return values;
+    }
 }
 
 Date.prototype.addDays = function (days) {
@@ -154,16 +178,14 @@ function calculateProgress(user) {
     $.getJSON(url, function (res) {
         var diary = res.diary;
 
-        // Get starting weight
-        for (let i = 0; i < diary.length; i++) {
-            if (diary[i].weight) {
-                currentWeight = diary[i].weight;
-            }
-        }
         // Get current weight
-        for (let i = diary.length - 1; i > 0; i--) {
+        currentWeight = diary[diary.length - 1].weight;
+
+        // Get starting weight
+        for (let i = 0; i < diary.length - 1; i++) {
             if (diary[i].weight) {
                 startWeight = diary[i].weight;
+                break;
             }
         }
 
@@ -292,4 +314,8 @@ function getShortMonth(month) {
 
 function round1DP(x) {
     return Number.parseFloat(x).toFixed(1);
+}
+
+function round2DP(x) {
+    return Number.parseFloat(x).toFixed(2);
 }
