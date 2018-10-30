@@ -102,11 +102,20 @@ function populateTable(user) {
             // Populate weekly delta
             var prevWeightAvg = average(prevWeight);
             var delta = weightAvg - prevWeightAvg;
-
             $('#tdee-table tr:last-child .table-delta').html(round2DP(delta));
 
-            // calculateDelta();
-            // calculateTDEE();
+            // calculate TDEE
+            var calsInKG = 7716.17455; // Calories in 1KG of fat
+            var sumTDEE; // Sum of last 5 weeks TDEE values
+            var TDEEs = []; // Stores historical TDEEs. Used to calculate sumTDEE
+            
+            for (let i = 0; i < 5; i++) {
+                // Get last 5 TDEEs (less if there aren't yet 5)
+                TDEEs[i] = 0;
+            }
+
+            var TDEE = (calorieAvg + (((-delta) * calsInKG) / 7));
+            var averageTDEE = (TDEE + sumTDEE) / TDEEs.length;
 
             startOfWeek = new Date(startOfWeek.addDays(7));
         }
