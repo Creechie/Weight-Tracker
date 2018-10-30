@@ -74,18 +74,8 @@ function populateTable(user) {
                     var weekDay = startOfWeek.addDays(d);
                     if (date.getTime() == weekDay.getTime()) {
 
-
-                        if (!(null == diary[entryIndex].weight)) {
-                            weight[d] = (diary[entryIndex].weight);
-                        } else {
-                            weight[d] = handleNaN(diary, 1, entryIndex);
-                        }
-
-                        if (!(null == diary[entryIndex].calories)) {
-                            calories[d] = diary[entryIndex].calories;
-                        } else {
-                            calories[d] = handleNaN(diary, 2, entryIndex);
-                        }
+                        weight[d] = (diary[entryIndex].weight);
+                        calories[d] = diary[entryIndex].calories;
 
                         cellHTML = '<ul>';
                         cellHTML += '   <li class="data-weight">' + weight[d] + '</li>';
@@ -121,18 +111,6 @@ function populateTable(user) {
             startOfWeek = new Date(startOfWeek.addDays(7));
         }
     });
-}
-
-
-/**
- * If the cell value is NaN, use previous cell instead (recursive)
- * @param {Object} diary - The user's diary object.
- * @param {string} property - Property to check. 0 = Date | 1 = Weight | 2 = Calories.
- * @param {number} index - The index of the element to check.
- */
-function handleNaN(diary, property, index) {
-    value = diary[index][property];
-    console.log(value);
 }
 
 function average(values) {
@@ -274,9 +252,9 @@ function submit() {
 
 function refreshTable() {
     $("#tdee-table").load("assets/html/table-init.html");
-    setTimeout(function(){
+    setTimeout(function () {
         populateTable("Charlie Creech");
-     }, 100); // Wait 100ms for $.load to finish before re-populating
+    }, 100); // Wait 100ms for $.load to finish before re-populating
 
     // $("#tdee-table").load("assets/html/table-init.html");
     // populateTable("Charlie Creech");
